@@ -1,0 +1,52 @@
+
+<div id="videodiv" style="width: 100%;">
+  <div style="width: 2%; display: inline-block; vertical-align: top;"></div>
+  <div style="width: 45%; display: inline-block;  vertical-align: top;">
+      <label>Local Stream</label>
+      <div *ngIf="call_type==2" style="width:90%;">
+        <div id="agora_local">
+        </div>
+      </div>
+      <div *ngIf="call_type==1" style="width:90%;">
+        <img src="assets/img/telephone.jpg" alt="">
+      </div>
+  </div>
+  <div style="width: 5%; display: inline-block;vertical-align: top;"></div>
+  <div style="width: 45%; display: inline-block;  vertical-align: top;">
+      <label>Remote Stream
+        <span *ngIf="msg[2]=='CALLING'" style="color: blue;">(****{{msg[2]}}****)</span>
+        <span *ngIf="msg[2]=='CONNECTED'" style="color: green;">(****{{msg[2]}}****)</span>
+        <span *ngIf="msg[2]=='REJECTED'" style="color: red">(****DISCONNECTED****)</span>
+        <span *ngIf="msg[2]=='DISCONNECTED'" style="color: red">(****{{msg[2]}}****)</span>
+      </label>
+      <div *ngIf="call_type==2" style="width:90%;">
+          <div class="remote-containers">
+            <div class="remote_calls" *ngFor="let remote of remoteCalls;" [id]="remote">
+            </div>
+          </div>
+      </div>
+      <div *ngIf="call_type==1" style="width:90%;">
+          <img src="assets/img/telephone.jpg" alt="">
+      </div>
+  </div>
+</div><br>
+<div style="color: red" class="col-md-12">
+  <span>{{errormessage}}</span>
+</div>
+<div id="videodiv" style="width: 100%;">
+  <!-- <div style="width: 5%; display: inline-block; background: blue; vertical-align: top;"></div> -->
+  <div *ngIf="call_type==2" style="width: 38%; display: inline-block;  vertical-align: top;  "></div>
+  <div *ngIf="call_type==1" style="width: 40%; display: inline-block;  vertical-align: top;  "></div>
+  <div style="width: 60%; display: inline-block;  vertical-align: top; align-items: center; ">
+    <br>
+    <button class="btn_now" (click)="leave()">Disconnect</button>
+    <button [ngClass]="{'btn_now' : toggle, 'btn_now1': !toggle}" (click)="mute()">Mic</button>
+    <!-- <button class="btn_now" (click)="unmute()">Unmute</button> -->
+    <div *ngIf="call_type==2" style="display: inline-block;  vertical-align: top;">
+      <button [ngClass]="{'btn_now' : toggle1, 'btn_now1': !toggle1}" (click)="dvideo()">Camera</button>
+      <!-- <button class="btn_now" (click)="evideo()">Enable Video</button> -->
+    </div>
+    
+  </div>
+</div>
+

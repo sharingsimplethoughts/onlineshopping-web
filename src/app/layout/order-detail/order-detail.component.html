@@ -1,0 +1,342 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- login-area start -->
+<div class="login-area" style="padding: 40px 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <div class="user_orders user_order_detail">
+          <div class="orders_heading">
+            <a routerLink="/product-detail/{{order?.product?.id}}"  class="o_num btn">{{order?.id}}</a>
+                <div *ngIf="full_order_detail?.order_status==4" style="float: right;">
+                  <a class="pointer" data-target="#return-order" data-toggle="modal"> Return Order</a> <!--routerLink="/order-detail/{{order?.id}}"-->
+                  /<a class="pointer" routerLink="/return-product-detail/{{order?.product?.id}}/{{full_order_detail?.id}}"> Exchange Order</a>
+                  <!-- /<a class="pointer" routerLink="/product-detail-bycolour/{{order?.product?.id}}/{{order?.selected_colour_id}}"> Exchange Order</a> -->
+                  <!-- /<a class="pointer" data-target="#exchange-order" data-toggle="modal"> Exchange Order</a>  -->
+                  <!--routerLink="/order-detail/{{order?.id}}"-->
+                </div>
+                <div *ngIf="full_order_detail?.order_status<4" style="float: right;">
+                    <a class="pointer" data-target="#cancel-order" data-toggle="modal"> Cancel Order</a> <!--routerLink="/order-detail/{{order?.id}}"-->
+                </div>
+          <!-- <i class="fa fa-map-marker"></i> -->
+          </div>
+          <div class="orders_body">
+            <a routerLink="/product-detail/{{order?.product?.id}}" class="order_img"><img src="http://mysite{{order?.product?.main_img}}" /></a>
+            <div class="order_details">
+              <h5>{{order?.product?.made_by}}</h5>
+              <h3><a routerLink="/product-detail/{{order?.product?.id}}">{{order?.stock_msg}}</a></h3>
+              <!--div class="price">
+                <span>$ 80</span>
+                <span class="old"> $ 120</span>
+                </div-->
+              <ul class="order_spec">
+                <li>
+                  <h6>Color : <strong>{{order?.selected_colour}}</strong> </h6>
+                </li>
+                <li>
+                  <h6>Size : <strong>{{order?.selected_size}}</strong></h6>
+                </li>
+                <li>
+                  <h6>Qty :  <strong>{{order?.selected_quantity}}</strong></h6>
+                </li>
+              </ul>
+               <div *ngIf="latest_status?.order_status == 4" class="">
+                <div class="star_rating">
+                  <!-- ------------------------ -->
+                  <div *ngIf="full_order_detail?.user_rating==0">
+                    <h4>Rate Your Product</h4>
+                    <div class="starrating">
+                      <input id="star5" (click)="productRating($event.target.value,$event.target.checked)" name="rating" type="radio" value="5">
+                      <label for="star5" title="5 star"></label>
+                      <input id="star4" (click)="productRating($event.target.value,$event.target.checked)" name="rating" type="radio" value="4">
+                      <label for="star4" title="4 star"></label>
+                      <input id="star3" (click)="productRating($event.target.value,$event.target.checked)" name="rating" type="radio" value="3">
+                      <label for="star3" title="3 star"></label>
+                      <input id="star2" (click)="productRating($event.target.value,$event.target.checked)" name="rating" type="radio" value="2">
+                      <label for="star2" title="2 star"></label>
+                      <input id="star1" (click)="productRating($event.target.value,$event.target.checked)" name="rating" type="radio" value="1">
+                      <label for="star1" title="1 star"></label>
+                    </div>
+                  </div>
+                  <div *ngIf="full_order_detail?.user_rating==5">
+                    <h4>Your have already rated the product</h4>
+                    <div class="starrating">
+                      <input id="star5" name="rating" type="radio" checked value="5" disabled>
+                      <label for="star5" title="5 star"></label>
+                      <input id="star4" name="rating" type="radio" value="4" disabled>
+                      <label for="star4" title="4 star"></label>
+                      <input id="star3" name="rating" type="radio" value="3" disabled>
+                      <label for="star3" title="3 star"></label>
+                      <input id="star2" name="rating" type="radio" value="2" disabled>
+                      <label for="star2" title="2 star"></label>
+                      <input id="star1" name="rating" type="radio" value="1" disabled>
+                      <label for="star1" title="1 star"></label>
+                    </div>
+                  </div>
+                  <div *ngIf="full_order_detail?.user_rating==4">
+                    <h4>Your have already rated the product</h4>
+                    <div class="starrating">
+                      <input id="star5" name="rating" type="radio" value="5" disabled>
+                      <label for="star5" title="5 star"></label>
+                      <input id="star4" name="rating" type="radio" checked value="4" disabled>
+                      <label for="star4" title="4 star"></label>
+                      <input id="star3" name="rating" type="radio" value="3" disabled>
+                      <label for="star3" title="3 star"></label>
+                      <input id="star2" name="rating" type="radio" value="2" disabled>
+                      <label for="star2" title="2 star"></label>
+                      <input id="star1" name="rating" type="radio" value="1" disabled>
+                      <label for="star1" title="1 star"></label>
+                    </div>
+                  </div>
+                  <div *ngIf="full_order_detail?.user_rating==3">
+                    <h4>Your have already rated the product</h4>
+                    <div class="starrating">
+                      <input id="star5" name="rating" type="radio" value="5" disabled>
+                      <label for="star5" title="5 star"></label>
+                      <input id="star4" name="rating" type="radio" value="4" disabled>
+                      <label for="star4" title="4 star"></label>
+                      <input id="star3" name="rating" type="radio" checked value="3" disabled>
+                      <label for="star3" title="3 star"></label>
+                      <input id="star2" name="rating" type="radio" value="2" disabled>
+                      <label for="star2" title="2 star"></label>
+                      <input id="star1" name="rating" type="radio" value="1" disabled>
+                      <label for="star1" title="1 star"></label>
+                    </div>
+                  </div>
+                  <div *ngIf="full_order_detail?.user_rating==2">
+                    <h4>Your have already rated the product</h4>
+                    <div class="starrating">
+                      <input id="star5" name="rating" type="radio" value="5">
+                      <label for="star5" title="5 star"></label>
+                      <input id="star4" name="rating" type="radio" value="4">
+                      <label for="star4" title="4 star"></label>
+                      <input id="star3" name="rating" type="radio" value="3">
+                      <label for="star3" title="3 star"></label>
+                      <input id="star2" name="rating" type="radio" checked value="2">
+                      <label for="star2" title="2 star"></label>
+                      <input id="star1" name="rating" type="radio" value="1">
+                      <label for="star1" title="1 star"></label>
+                    </div>
+                  </div>
+                  <div *ngIf="full_order_detail?.user_rating==1">
+                    <h4>Your have already rated the product</h4>
+                    <div class="starrating">
+                      <input id="star5" name="rating" type="radio" value="5" readonly>
+                      <label for="star5" title="5 star"></label>
+                      <input id="star4" name="rating" type="radio" value="4" readonly>
+                      <label for="star4" title="4 star"></label>
+                      <input id="star3" name="rating" type="radio" value="3">
+                      <label for="star3" title="3 star"></label>
+                      <input id="star2" name="rating" type="radio" value="2">
+                      <label for="star2" title="2 star"></label>
+                      <input id="star1" name="rating" type="radio" checked value="1">
+                      <label for="star1" title="1 star"></label>
+                    </div>
+                  </div>
+                  
+                </div>
+               </div>
+              <!--div class="button-cart">
+                <button class="btn"><i class="fa fa-check"></i> Delivered</button>
+                </div-->
+            </div>
+            <div class="order_price">
+              <h4>$ {{order?.product?.price_details?.actual_price}}</h4>
+            </div>
+            <div class="order_status">
+              <h5>{{order_status[full_order_detail?.order_status]}} on {{latest_status?.created}}<br>
+                <h5 style="color: green;">{{order_status[full_order_detail?.order_status]}}</h5>
+              </h5>
+            </div>
+            
+            
+          </div>
+
+          <!-- <ol class="progtrckr" data-progtrckr-steps="3">
+            <li class="progtrckr-done">Order Processing</li>
+            <li class="progtrckr-done">Pre-Production</li>
+            <li class="progtrckr-todo">In Production</li>
+            <li class="progtrckr-todo">Shipped</li>
+            <li class="progtrckr-todo">Delivered</li>
+          </ol> -->
+
+          <div class="orders_footer">
+            <div *ngIf="latest_status?.order_status == 1">
+              <ol class="progtrckr" data-progtrckr-steps="3">
+                <li class="progtrckr-done">Ordered</li>
+                <li class="progtrckr-todo">Packed</li>
+                <li class="progtrckr-todo">Shipped</li>
+                <li class="progtrckr-todo">Delivered</li>
+              </ol>
+            </div>
+            <div *ngIf="latest_status?.order_status == 2">
+              <ol class="progtrckr" data-progtrckr-steps="3">
+                <li class="progtrckr-done">Ordered</li>
+                <li class="progtrckr-done">Packed</li>
+                <li class="progtrckr-todo">Shipped</li>
+                <li class="progtrckr-todo">Delivered</li>
+              </ol>
+            </div>
+            <div *ngIf="latest_status?.order_status == 3">
+              <ol class="progtrckr" data-progtrckr-steps="3">
+                <li class="progtrckr-done">Ordered</li>
+                <li class="progtrckr-done">Packed</li>
+                <li class="progtrckr-done">Shipped</li>
+                <li class="progtrckr-todo">Delivered</li>
+              </ol>
+            </div>
+            <div *ngIf="latest_status?.order_status == 4">
+              <ol class="progtrckr" data-progtrckr-steps="3">
+                <li class="progtrckr-done">Ordered</li>
+                <li class="progtrckr-done">Packed</li>
+                <li class="progtrckr-done">Shipped</li>
+                <li class="progtrckr-done">Delivered</li>
+              </ol>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login-area end -->
+
+<div class="modal fade" id="cancel-order">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content coupon">
+      <div class="modal-body cncl-order">
+          <h4 class="text-center">To cancel, you have to call to hotline</h4>
+          <div class="clncl-order-call">
+            3498038430
+          </div>
+          <ol>
+              <li>Cancellation will only be accepted if your order has not been shipped.</li>
+              <li>You can not guarntee that your order will be cancelled as we aim to fulfill all orders withen the next business day.</li>
+              <li>Successful order Cancellation are subjected to a $5.00 Administration /Cancellation fee.</li>
+          </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="return-order">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="display: contents;">Return Order</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+         <div class="col-md-12">
+          <div class="exchange-order">
+            <h5>Select any of the Reason</h5> 
+              <ul>
+                <li>
+                  <span>
+                    <input id="radio1" (click)="mainForm($event.target.value,$event.target.checked)" class="radio-custom  ml-1" name="radio-group" type="radio" value="Product quality is not good.">
+                    <label id="" title="Select Address" for="radio1" class="radio-custom-label" style="font-weight: normal;">&nbsp; Product quality is not good.</label>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <input id="radio2" (click)="mainForm($event.target.value,$event.target.checked)" class="radio-custom  ml-1" name="radio-group" type="radio" value="This is not the product that i ordered.">
+                    <label title="Select Address" for="radio2" class="radio-custom-label" style="font-weight: normal;">&nbsp; This is not the product that i ordered.</label>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <input id="radio3" (click)="mainForm($event.target.value,$event.target.checked)" class="radio-custom ml-1" name="radio-group" type="radio" value="4">
+                    <label title="Select Address" for="radio3" class="radio-custom-label" style="font-weight: normal;">&nbsp; Other</label>
+                  </span>
+                  <textarea id="other_text" class="form-control margin-top-15" rows="4" readonly></textarea>
+                </li>
+              </ul>
+
+ 
+          </div>
+          <br><br>
+          <div class="add-bank-detail">
+              <h5>Refund Detail</h5>
+              <p>Add Bank Details</p>
+              <div class="login-content">
+                  <form [formGroup]="return_form" (ngSubmit)="set_return_form()">
+                      <input type="hidden" name="order_detail_id" id="order_detail_id" value="{{full_order_detail?.id}}">
+                      <input type="hidden" name="return_description" id="return_description" value="{{order?.id}}">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="checkout-form-list">
+                            <label>Bank Holder Name</label>
+                            <input formControlName="bank_holder_name" type="text" id="bank_holder_name" required/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="checkout-form-list">
+                            <label>Bank Name</label>
+                            <input formControlName="bank_name" type="text" id="bank_name" required/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="checkout-form-list">
+                            <label>Branh Address</label>
+                            <input formControlName="branch_addr" type="text" id="branch_addr" required/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="checkout-form-list">
+                            <label>Account Number</label>
+                            <input formControlName="account_number" type="text" id="account_number" required/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="checkout-form-list">
+                            <label>IFSC Code</label>
+                            <input formControlName="ifsc_code" type="text" id="ifsc_code" required/>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <input type="checkbox" style="height: 20px; width: 20px;" name="terms" id="terms" onchange="document.getElementById('uprofilebtn').disabled = !this.checked;">&nbsp;&nbsp; I Agree Terms & Coditions
+                        </div>
+                        <div class="col-md-12">
+                          <button class="action-button btn btn-default btn-block" id="uprofilebtn" name="btnReturn" type="submit" disabled>Return</button>
+                        </div>
+                        <div style="color: red" class="col-md-12">
+                          <span>{{errormessage}}</span>
+                        </div>
+                      </div>
+                  </form>
+                  
+              </div>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exchange-order">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="display: contents;">Exchange Order</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+         <div class="col-md-12">
+          <div class="exchange-order">
+            <h5>Write the reason for exchange</h5> 
+            <textarea class="form-control" rows="4"></textarea>
+          </div>
+          <div class="col-md-12">
+              <div class="margin-top-15">
+                <button class="action-button btn btn-default btn-block" id="uprofilebtn" name="next" type="submit">Save & Proceed</button>
+              </div>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- footer start -->
+
+
+<app-footer></app-footer>
+

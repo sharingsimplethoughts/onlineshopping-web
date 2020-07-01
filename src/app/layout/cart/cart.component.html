@@ -1,0 +1,171 @@
+<app-header></app-header>
+<!-- header end --->
+<!-- cart-main-area start -->
+<div class="cart-main-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <form id="msform">
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <li class="active">Shopping Cart</li>
+            <li>Address</li>
+            <li>Shipping Method</li>
+            <li>Payment</li>
+          </ul>
+          <!-- fieldsets -->
+          <fieldset>
+            <div class="col-sm-8 col-xs-12" style="margin-bottom: 20px;">
+              <div class="cart_card">
+                <h2 class="fs-title">My Bag</h2>
+                <div class="row">
+
+                  <div *ngIf="this.cart_items?.length==0">
+                    <h4>
+                      Your bag is empty
+                    </h4>
+                  </div>
+
+                  <div class="col-md-12" *ngFor="let cart of cart_items">
+                    <button type="button" (click)="removeFromCart(cart.id)" class="close" data-dismiss="modal"
+                      title="Remove from bag"><i class="fa fa-trash"></i>
+                    </button>
+                    <!-- <button type="button" class="close" (click)="removeFromCart(cart.id)" data-dismiss="modal">&times;</button> -->
+                    <div class="cart_product">
+                      <div class="col-md-2 product-thumbnail">
+                        <a routerLink="/product-detail"><img src="http://mysite{{cart?.product.main_img}}"
+                            alt="" /></a>
+                      </div>
+                      <div class="col-md-10 product-content">
+                        <h5>{{cart?.product.made_by}}</h5>
+                        <h3><a routerLink="/product-detail">{{cart?.product.name}}</a></h3>
+                        <div class="price">
+                          <span>$ {{cart?.product?.price_details?.special_price}}</span>
+                          <span class="old"> $ {{cart?.product?.price_details?.actual_price}}</span>
+                        </div>
+                        <ul class="list-inline">
+                          <li>
+                            <h6></h6>
+                          </li>
+                          <li>
+                            <span>
+                              <option>{{cart.selected_size}}</option>
+                            </span>
+                          </li>
+                          <li>
+                            <select name="qty" (change)="changeCartQty($event.target.value,cart.id)">
+                              <label>Qty</label>
+                              <option [value]="1" [selected]="cart.selected_quantity == 1">1</option>
+                              <option [value]="2" [selected]="cart.selected_quantity == 2">2</option>
+                              <option [value]="3" [selected]="cart.selected_quantity == 3">3</option>
+                              <option [value]="4" [selected]="cart.selected_quantity == 4">4</option>
+                              <option [value]="5" [selected]="cart.selected_quantity == 5">5</option>
+                              <option [value]="6" [selected]="cart.selected_quantity == 6">6</option>
+                              <option [value]="7" [selected]="cart.selected_quantity== 7">7</option>
+                              <option [value]="8" [selected]="cart.selected_quantity== 8">8</option>
+                              <option [value]="9" [selected]="cart.selected_quantity == 9">9</option>
+                              <option [value]="10" [selected]="cart.selected_quantity == 10">10</option>
+
+                            </select>
+                          </li>
+                        </ul>
+                       
+                        <!-- <div class="button-cart">
+                          <button><i class="fa fa-heart-o"></i> Save for Later</button>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="coupon">
+                <h3 class="fs-title margin-bottom-15">Coupons
+                  <span class="input-group-btn pull-right">
+                    <button class="btn btn-default pull-right" type="button" data-toggle="modal"
+                      data-target="#coupon-modal">Available Coupons</button>
+                  </span>
+                </h3>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="prod-coupon" placeholder="Enter Coupon">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" (click)="applyCoupon()" type="button">Apply</button>
+                  </span>
+                </div>
+                <ul *ngIf="isCoupon == true" class="list-inline" style="margin-top: 5%; margin-left:-5% ;">
+                  <label>Applied Coupon</label>
+                  <li>{{applydCoupon}}</li>
+                  <span class="pull-right">
+                    <button style="color: #fe4847 !important;" class="pull-right close" (click)="removeCoupon()" type="button" ><i class="fa fa-trash"></i></button>
+                  </span>
+                </ul>
+              </div>
+              <div class="cart_price">
+                <h3 class="fs-title">Price Details</h3>
+                <div class="cart_price_details">
+                  <h5>Price ({{price_details?.items || '0'}} item) <span>${{price_details?.price|| '0'}}</span></h5>
+                  <h5>Saved Amount <span>- ${{price_details?.saved_ammount|| '0'}}</span></h5>
+                  <h5>Coupon Discount <span>- ${{price_details?.coupon_applied|| '0'}}</span></h5>
+                  <!-- <h5>Delivery Charges <span class="text-success">Free</span></h5> -->
+                  <h5>Delivery Charges <span>+ ${{price_details?.shipping_charges|| '0'}}</span> </h5>
+                  <br>
+                  <hr>
+                  <h4>Total Price <span>${{price_details?.grand_total|| '0'}}</span></h4>
+                </div>
+              </div>
+              <a (click)="checkout()" id="ckout_btn" name="next" class="action-button btn btn-default btn-block"
+                type="button">CHECKOUT</a>
+            </div>
+          </fieldset>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- cart-main-area end -->
+<!-- footer start -->
+<app-footer></app-footer>
+
+<div class="modal fade" id="coupon-modal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content coupon">
+      <div class="modal-body">
+        <div class="row lh-20">
+            <aside class="widget widget-categories">
+                <h3 class="sidebar-title">Available Coupons</h3>
+                <div class="panel-body">          
+                 <label class="container copon" *ngFor="let c of coupons" > <strong class="c" >{{c.code}}</strong>
+                    <input type="radio" name="code" value={{c.code}} id={{c.id}} (click)="saveCoupon($event)">
+                    <span class="checkmark"></span>
+                    <h5 class="d">{{c.description}}</h5>
+                    <u><h6 class="t">{{c.terms_and_cond}}</h6></u>
+                  </label>
+                
+                </div>
+              </aside>
+
+          <!-- <span class="input-group-btn text-center">
+            <button class="btn btn-default" type="button" data-dismiss="modal">Save</button>
+          </span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <aside class="widget widget-categories">
+  <h3 class="sidebar-title">Price</h3>
+  <div class="panel-body">
+
+    <label class="container" *ngFor="let c of coupons" >{{c.code}}
+    <input type="radio" name="code" id = {{c.code}} (change)="onChange($event)">
+    <span class="checkmark"></span>
+    </label>
+  
+  </div>
+</aside> -->

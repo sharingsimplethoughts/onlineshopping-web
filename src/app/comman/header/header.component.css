@@ -1,0 +1,25 @@
+.get_current_location:hover {
+    cursor: pointer;
+    color: red;
+}
+.style-title{
+    width: 100%;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+    background-image: linear-gradient(to right, #f76470, #763a87) !important;
+    margin-bottom: 35px;
+}
+.style-title h3{
+   color: #fff;
+   margin-bottom: 0px;
+}
+.rounded-circle {
+    border-radius: 50%!important;
+  }
+  .user_img_msg{
+    height: 30px;
+    width: 30px;
+    border:1.5px solid #f5f6fa;
+  
+  }

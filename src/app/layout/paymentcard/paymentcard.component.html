@@ -1,0 +1,79 @@
+<div class="login-area" style="padding: 40px 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <button data-toggle="modal" data-target="#productModal" title="Add New Address" class="btn add_address"><i
+            class="fa fa-plus"></i> Add A New Card</button>
+      </div>
+
+      <div class="col-md-4 savdCard" *ngFor="let card of savedCards; let i = index">
+        <div class="cart_card saved_cards">
+            <!-- <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input radio" (click)="selectCard(card.source_token)" name="optradio" checked>
+                </label>
+            </div> -->
+              
+          <h2 class="fs-title">{{card.name}}
+            <a href="javascript:void(0)" (click)=deleteCard(card.id)>
+              <span>
+                <i class="fa fa-trash"></i>
+              </span>
+            </a>
+
+            <span style="margin-right: 8px;">
+              <!-- <label title="Select Card" for="{{'radioId'+i}}" class="radio-custom-label"></label> -->
+
+              <input id="{{'radioId'+i}}" class="radio-custom" (click)="selectCard(card.source_token)" name="radio-group" type="radio">
+              <label title="Select card" for="{{'radioId'+i}}" class="radio-custom-label"></label>
+
+            </span>
+            
+          </h2>
+          <div class="product-content">
+            <h3><img src="assets/img/visa_card.png" class="cards_icon" /><strong>{{card.card}}</strong></h3>
+            <!-- <h5>State Bank of India Debit Card</h5> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="order-button-payment pull-right btnn">
+      <button id="uprofilebtn" name="next" class="action-button btn btn-default btn-block"
+        type="button" (click)="PlaceOrder_and_makePayment()">Proceed</button>
+    </div> -->
+
+
+    <!-- save card Modal-->
+    <div class="modal fade saved_cards" id="productModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">x</span></button>
+          </div>
+          <div class="modal-body payform">
+            <!-- Payment ngx-stripe -->
+            <form novalidate (ngSubmit)="saveCard()" [formGroup]="stripeTest">
+              <div class="row">
+                <div class="col-md-11">
+                  <div class="checkout-form-list">
+                    <input type="text" formControlName="name" placeholder="Jane Doe">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-11">
+                  <div class="checkout-form-list">
+                    <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+                  </div>
+                </div>
+              </div>
+              <div class="order-button-payment">
+              <button type="submit" class="btn btn-light">Save Card Details</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

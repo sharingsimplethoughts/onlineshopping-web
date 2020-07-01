@@ -1,0 +1,111 @@
+.login-content{
+    padding: 0px !important;
+}
+#uprofilebtn{
+    margin-top: 0px;
+  }
+  
+   /* rating */
+.starrating{
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+  .starrating > input {
+    display: none;
+  } 
+  .starrating > label:before { 
+    content: "\f005"; 
+    margin: 2px 3px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    display: inline-block; 
+  }
+  .starrating > label{
+    color: #b5b5b5;
+    cursor: pointer;
+  }
+  .starrating > input:checked ~ label, .starrating > input:hover ~ label{ 
+    color:#fe4847;
+  }
+  
+  .star_rating h2 {
+    font-size: 27px;
+    text-transform: uppercase;
+  }
+  .star_rating p {
+    font-size: 17px;
+    color: #78e2fb;
+    clear: both;
+    margin-bottom: 3px;
+  }
+  .star_rating h4 {
+      font-size: 13px;
+      margin-bottom: 3px;
+  }
+  .login-content form {
+    margin-top: 11px;
+}
+.text-center{
+    text-align: center;
+}
+.border-bottom{
+    border-bottom: 1px solid #ddd;
+}
+.exhange-amount{
+    position: relative;
+    padding: 15px 15px 0px 15px;
+}
+.exhange-amount ul{
+    list-style: none;
+}
+.exhange-amount ul li{
+    display: inline-block;
+    color: #989292;
+    margin-bottom: 3px;
+}
+.exhange-amount ul li:nth-child(2n+1){
+   width: 40%;
+}
+.exhange-amount ul li:nth-child(2n+2){
+    width: 50%;
+    float: right;
+    text-align: right;
+ }
+ .exhange-amount1{
+    position: relative;
+    padding: 0px 15px 15px 15px;
+}
+.exhange-amount1 ul{
+    list-style: none;
+}
+.exhange-amount1 ul li{
+    display: inline-block;
+    color: #000;
+    margin-bottom: 3px;
+}
+.exhange-amount1 ul li:nth-child(2n+1){
+   width: 40%;
+}
+.exhange-amount1 ul li:nth-child(2n+2){
+    width: 50%;
+    float: right;
+    text-align: right;
+ }
+ .exchange-main {
+     position: relative;
+   padding: 15px;
+}
+ .exchange-main h3 {
+    font-size: 16px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+.echange-m{
+    position: relative;
+}
+.float-right{
+    float: right;
+}

@@ -1,0 +1,285 @@
+<app-header></app-header>
+<!-- <app-loader></app-loader> -->
+
+<!-- header end -->
+<!-- breadcrumb-area start -->
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-list">
+          <ul>
+            <li><a routerLink="/">HOME</a></li>
+            <li *ngIf="profile?.role==4"><a routerLink="/stylist-detail/{{profile?.id}}">{{profile?.name | uppercase}} PROFILE</a></li>
+            <li *ngIf="profile?.role==3"><a routerLink="/designer-detail/{{profile?.id}}">{{profile?.name | uppercase }} PROFILE</a></li>
+
+            <!-- <li><a routerLink="/product-list">Men's Tshirts</a></li> -->
+            <li><span>{{product?.name | uppercase}}</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- breadcrumb-area end -->
+<!-- shop-area start -->
+<div class="shop-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12 zoomSlide">
+            <div class="exzoom hid_den" id="exzoom">
+              <div class="exzoom_img_box">
+                <ul class='exzoom_img_ul'>
+                  
+                  <li><img src="{{product?.main_img}}"></li>
+                  <li *ngFor = "let product of colour_and_images?.product_images">
+                    <img src="http://mysite{{product?.image}}"/>
+                  </li>
+                  
+                  
+                </ul>
+              </div>
+              <div class="exzoom_nav"></div>
+              <p class="exzoom_btn">
+                <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
+                <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12 shop-list shop-details">
+            <div class="product-content">
+              <h5>{{profile?.name}} </h5>
+              <h3><a >{{product?.name}}</a></h3>
+              <div class="price">
+                <span>$ {{colour_and_images?.special_price}}</span>
+                <span class="old" *ngIf="colour_and_images?.offer>'0'"><small>$ {{colour_and_images?.actual_price}}</small> {{colour_and_images?.offer}}% off</span>
+              </div>
+              <div class="s-p-rating">
+                <span class="review-no">Inclusive of all taxes</span>
+              </div>
+              <div class="pro-rating rating" >
+                <i class="fa fa-star" *ngFor="let star of product_stars"></i>
+                <i class="fa fa-star-o" *ngFor="let non_star of product_non_stars"></i>
+              </div>
+             <span>(5 customer reviews)</span>
+              <div class="pro-size">
+                <!-- <label>Select Size <span>Size Guide</span></label> -->
+
+                <div class="col-md-2 col-xs-4 boxed" *ngFor="let size of colour_and_images?.available_size">
+                  <input [(ngModel)]="selected_size" [value]="size.size" type="radio" id="size-{{size.id}}" name="size" *ngIf="size.stock_status">
+                  <label for="size-{{size.id}}" *ngIf="size.stock_status">{{size.size}}</label>
+                </div>
+               
+              </div>
+              <div class="pro-size">
+                <label>colors</label>
+
+                <div class="detail round" *ngFor=" let colour of product?.available_colours">
+                  <input type="radio"  routerLink="/product-details-bycolour/{{profile?.id}}/{{product.id}}/{{colour.id}}" [checked]="colour.colour_id == colour_and_images.colour" id="colour-{{colour.id}}" name="colour" />
+                  <label for="colour-{{colour.id}}" [ngStyle]="{'background-color': colour.colour_code}" ></label>
+                </div>
+            
+              </div>
+              <div class="product-action">
+                <div class="button-top">
+                 
+                  <a href="javascript:void(0);" (click)= "addToWishlist(product?.id, is_in_wishlist)" [ngClass]="{'liked': is_in_wishlist}"><i class="fa fa-heart"></i></a>
+                </div>
+                <div class="button-cart">
+                  <button type="button" (click)=addToCard(product?.id)><i class="fa fa-shopping-cart"></i> add to cart</button>
+                </div>
+              </div>
+              <div class="product-offers well well-default">
+                  <h5>BEST OFFERS <small> Best Price : <span class="old">$ 40</span></small></h5>
+                  <h6><strong>Applicable On : </strong> On order above $ 40</h6>
+                  <h6><strong>Coupon Code : </strong> ifash40up</h6>
+              </div>
+              <div class="product-share">
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  
+                  
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Product Detail
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                          <div class="panel-body">
+                            <ul id="product-desc-t">
+                              <li>{{product?.description || 'N/A'}}</li>
+                             
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Specifications
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                          <ul id="product-desc-t">
+                            <li>Category : {{product?.category.cat_name}}</li>
+                            <li>Sub Category : {{product?.subcategory.subcat_name}}</li>
+                            <li>material : {{product?.material || 'N/A'}}</li>
+                            <li>Fit : {{product?.fit || 'N/A'}}</li>
+                            <li>Pattern : {{product?.pattern || 'N/A'}}</li>
+                            <!-- <li>Fabric : {{product?.fabric || 'N/A'}}</li> -->
+                            <li>Brand : {{product?.brand || 'N/A'}}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                      
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="headingThree">
+                            More Info
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                            <ul id="product-desc-t">
+                              <li>{{product?.more_info || 'N/A'}}</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- left-sidebar start -->
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+      <!-- left-sidebar end -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="product-tab">
+              <!-- Nav tabs -->
+              <ul class="product-nav" role="tablist" *ngIf="best_selling?.length > 0">
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Best Sales Product</a></li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="profile">
+                  <div class="row">
+                    <div class="product-curosel">                      
+
+                      <!-- single-product start -->
+                      <div class="col-md-12" *ngFor="let products of best_selling ">
+                        <div class="single-product">
+                          <div class="product-img">
+                            <a routerLink="/product-details/{{profile?.id}}/{{products?.id}}/">
+                              <h5>-{{products?.colour_and_images?.offer}}%</h5>
+                              <img src="{{products?.main_img}}" alt="" />
+                              <!-- <img class="secondary-img" src="http://mysite{{products?.colour_and_images.product_images.image}}" alt="" /> -->
+                            </a>
+                            <span class="tag-line">new</span>
+                            <div class="product-action">
+                              <div class="button-top">
+                                <a href="javascript:void(0)" (click)="view_product_detail(products?.id)" data-toggle="modal" data-target="#productModal"  (click)="view_product_detail($event)"><i class="fa fa-eye"></i></a>
+                                <a href="javascript:void(0)" routerLink="/cart"><i class="fa fa-shopping-cart"></i></a>
+                                
+                                <a *ngIf="products?.is_in_wishlist" href="javascript:void(0)" id="product_{{products?.id}}" name="{{products?.is_in_wishlist}}" (click)= "addToWishlist_bestselling(products?.id,$event)"  class="liked"><i  class="fa fa-heart"></i></a>
+                                <a *ngIf="! products?.is_in_wishlist" href="javascript:void(0)" id="product_{{products?.id}}" name="{{products?.is_in_wishlist}}" (click)= "addToWishlist_bestselling(products?.id,$event)" class="" ><i  class="fa fa-heart"></i></a>
+
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-content">
+                            <h3><a routerLink="/product-detail/{{profile?.id}}/{{products?.id}}/">{{products?.name}}</a></h3>
+                            <div class="price">
+                              <h5 style="margin-bottom: 5px;">by {{profile?.name| uppercase}}</h5>
+                              <span>${{products?.colour_and_images?.special_price}}</span>
+                              <span *ngIf="products?.colour_and_images?.offer>'0'" class="old">${{products?.colour_and_images?.actual_price}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- single-product end -->
+                       <!-- single-product start -->
+                       <div class="col-md-12" >
+                          
+                        </div>
+                        <!-- single-product end -->
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- shop-area end -->
+<!-- footer start -->
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+      </div>
+      <div class="modal-body">
+      <div class="modal-img">
+        <a routerLink="#"><img src="{{view_product?.main_img}}" alt="" width="100%"/></a>
+      </div>
+      <div class="modal-pro-content">
+        <h3><a routerLink="#">{{view_product?.name}}</a></h3>
+        <div class="pro-rating">
+          <i class="fa fa-star" *ngFor="let star of stars"></i>
+          <i class="fa fa-star-o" *ngFor="let non_star of non_stars"></i>
+        </div>
+       <span>(5 customer reviews)</span>
+        <div class="price">
+          <span>${{view_product?.colour_and_images?.special_price}}</span>
+          <span *ngIf="view_product?.colour_and_images?.offer>'0'" class="old">${{view_product?.colour_and_images?.actual_price}}</span>
+          <span *ngIf="view_product?.colour_and_images?.offer>'0'" style="color: green;">  {{view_product?.colour_and_images.offer}}% off</span>
+
+        </div>
+        <p> {{view_product?.description || 'N/A'}} </p>
+        <!-- <form action="#">
+          <input type="number" value="1" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+          <button type="button">Add to cart</button>
+        </form> -->
+        <div >
+          <span class="posted_in">Categories: 
+            <a rel="tag" routerLink="#">{{view_product?.category.cat_name}}</a>             
+          </span> 
+
+        </div>
+        <div class="social">
+          <a routerLink="#"><i class="fa fa-facebook"></i></a>
+          <a routerLink="#"><i class="fa fa-twitter"></i></a>
+          <a routerLink="#"><i class="fa fa-google-plus"></i></a>
+          <a routerLink="#"><i class="fa fa-instagram"></i></a>
+          <a routerLink="#"><i class="fa fa-pinterest"></i></a>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <!-- Modal end -->
+<app-footer></app-footer>

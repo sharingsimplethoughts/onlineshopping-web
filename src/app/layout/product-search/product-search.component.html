@@ -1,0 +1,240 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- page-title-area start -->
+<div class="page-title-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-heading text-center">
+          <h1></h1>
+          <div class="breadcrumb-list">
+            <ul>
+              <li><a routerLink="/">HOME</a></li>
+              <!-- <li><a [routerLink]="['/product-subcategories', first_product.category.id,first_product.subcategory.id]"></a></li> -->
+              <li><span><a>Seach results</a></span></li>
+              <li><span>{{searchString}}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- page-title-area end -->
+<!-- shop-area start -->
+<div class="shop-area">
+  <div class="container">
+    <div class="row">
+      <!-- left-sidebar start -->
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <!-- widget-categories start -->
+        <form method="">
+        <h5 class="filterby">Filter By <button id="reset-all" type="reset" (click)="onChange($event,'','','')">Reset All</button></h5>
+        <aside class="widget widget-categories">
+
+            <h3 class="sidebar-title">Categories</h3>
+  
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              
+
+              <div class="panel panel-default" *ngFor="let category of filters?.categories">
+  
+                <div class="panel-heading" role="tab">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse"  class="collapsed" data-parent="#accordion" href="#{{category.cat_name}}">{{category.cat_name}}</a>
+                  </h4>
+                </div>
+                
+                <div id="{{category.cat_name}}" class="panel-collapse collapse" >
+                  <div id="accordion1" class="panel-body" *ngFor="let subcategory of category?.subcategory">
+                    <div class="panel-heading" role="tab">
+                        <h4 class="panel-title ">
+                            <label class="container collapsed" [attr.data-target]="'#'+subcategory.id" data-toggle="collapse" data-parent="#accordion1" > 
+                              <input  type="checkbox" name="category" (change)="onChange($event,category.id,subcategory.id)">
+                              <span class="checkmark"></span>
+                              {{subcategory.subcat_name}}
+                            </label>
+                          </h4>
+                    </div>
+                    
+          
+                    <div id="{{subcategory.id}}" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <label class="container" *ngFor="let subsubcategory of subcategory?.subsubcategory">{{subsubcategory.subsubcat_name}}
+                        <input  type="checkbox" name="category" (change)="onChange($event,category.id,subcategory.id,subsubcategory.id)">
+                        <span class="checkmark"></span>
+                        </label>                         
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </aside>
+        <!-- widget-categories end -->
+
+        <aside class="widget widget-categories">
+          <h3 class="sidebar-title">Color</h3>
+
+          <div class="filter round" *ngFor="let colour of filters?.colours">
+            <input type="checkbox" name="colour"  id="colour-{{colour.colour_id}}" (change)="onChange($event)" />
+            <label for="colour-{{colour.colour_id}}" [ngStyle]="{'background-color': colour.colour_code}"></label>
+          </div>
+          
+        </aside>
+
+        <!-- widget-categories end -->
+        <aside class="widget widget-categories">
+          <h3 class="sidebar-title">Size</h3>
+          <div class="panel-body">
+            <label class="container" *ngFor="let size of filters?.sizes">{{size.size}}
+            <input type="checkbox" name="size" id ="{{size.size}}" (change)="onChange($event)">
+            <span class="checkmark"></span>
+            </label>
+
+          </div>
+        </aside>
+        <aside class="widget widget-categories">
+          <h3 class="sidebar-title">Price</h3>
+          <div class="panel-body">
+
+            <label class="container" *ngFor="let price of filters?.price" >{{price.show_value}}
+            <input type="radio" name="price" id = {{price.price}} (change)="onChange($event)">
+            <span class="checkmark"></span>
+            </label>
+          
+          </div>
+        </aside>
+        <aside class="widget widget-categories">
+          <h3 class="sidebar-title">Discount</h3>
+
+          <div class="panel-body">
+            <label class="container" *ngFor="let offer of filters?.offers">{{offer.offer}}
+            <input type="radio" name="discount"  id="{{offer.id}}" (change)="onChange($event)">
+            <span class="checkmark"></span>
+            </label>
+          </div>
+        </aside>
+        </form>
+      </div>
+
+      <!-- left-sidebar end -->
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <div class="shop-content">
+          <!-- Nav tabs -->
+          <div class="short-by">
+            <span class="sorting-show"> Sort by :</span>
+            <select name="sorting" (change)="onChange($event,'','','')">
+              <option value="-qty_sold">Best Selling</option>
+              <option value="-created_date">New Arrivals</option>
+              <option value="-avg_rating">Average rating</option>
+              <option value="min_price">Price (low to high)</option>
+              <option value="-min_price">Price (high to low)</option>
+            </select>
+          </div>
+          <div class="clear"></div>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+              <div class="row">
+
+                <div  *ngIf="this.products?.length==0">
+                  <span class="search_no_results">
+                     No Product Found 
+                  </span>
+                </div>
+
+                <!-- single-product start -->
+                <div class="col-md-4 col-sm-4" *ngFor="let product of products | paginate: { itemsPerPage: 12, currentPage: p }">
+                  <div class="single-product">
+                    <div class="product-img">
+                      <a routerLink="/product-detail/{{product?.id}}">
+                        <h5 *ngIf="product?.colour_and_images?.offer>'0'">-{{product?.colour_and_images.offer}}%</h5>
+                        <img src="{{product?.main_img}}" alt="" />
+                        <!-- <img class="secondary-img" src="http://mysite{{product?.colour_and_images.product_images.image}}" alt="" /> -->
+                      </a>
+                      <div class="product-action">
+                        <div class="button-top">
+                          <a href="javascript:void(0)" data-toggle="modal" data-target="#productModal" id="{{product?.id}}" (click)="view_product_detail($event)"><i class="fa fa-eye"></i></a>
+                          <a href="javascript:void(0)" routerLink="/cart"><i class="fa fa-shopping-cart"></i></a>
+                          <a href="javascript:void(0)" (click)= "addToWishlist(product?.id, product?.is_in_wishlist)" [ngClass]="{'liked': product?.is_in_wishlist}" ><i class="fa fa-heart"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-content">
+                      <h3><a routerLink="/product-detail/{{product?.id}}">{{product?.name}}</a></h3>
+                      <div class="price">
+                        <!-- <h5 style="margin-bottom: 5px;">by DANNIJO</h5> -->
+                        <span>${{product?.colour_and_images?.special_price}}</span>
+                        <span *ngIf="product?.colour_and_images?.offer>'0'"class="old">${{product?.colour_and_images?.actual_price}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- single-product end -->
+
+
+              </div>
+            </div>
+            <div class="product-breadcrumb">
+              <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- shop-area end -->
+<!-- footer start -->
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+    </div>
+    <div class="modal-body">
+    <div class="modal-img">
+      <a routerLink="#"><img src="{{view_product?.main_img}}" alt="" width="100%" /></a>
+    </div>
+    <div class="modal-pro-content">
+      <h3><a routerLink="#">{{view_product?.name}}</a></h3>
+      <div class="pro-rating">
+        <i class="fa fa-star" *ngFor="let star of stars"></i>
+        <i class="fa fa-star-o" *ngFor="let non_star of non_stars"></i>
+      </div>
+     <span>(5 customer reviews)</span>
+      <div class="price">
+        <span>${{view_product?.colour_and_images?.special_price}}</span>
+        <span *ngIf="view_product?.colour_and_images?.offer>'0'" class="old">${{view_product?.colour_and_images?.actual_price}}</span>
+        <span *ngIf="view_product?.colour_and_images?.offer>'0'" style="color: green;">  {{view_product?.colour_and_images.offer}}% off</span>
+
+      </div>
+      <p> {{view_product?.description}} </p>
+      <form action="#">
+        <input type="number" value="1" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+        <button type="button">Add to cart</button>
+      </form>
+      <div class="product_meta">
+        <span class="posted_in">Categories: 
+          <a rel="tag" routerLink="#">{{view_product?.category.cat_name}}</a>             
+        </span> 
+
+      </div>
+      <div class="social">
+        <a routerLink="#"><i class="fa fa-facebook"></i></a>
+        <a routerLink="#"><i class="fa fa-twitter"></i></a>
+        <a routerLink="#"><i class="fa fa-google-plus"></i></a>
+        <a routerLink="#"><i class="fa fa-instagram"></i></a>
+        <a routerLink="#"><i class="fa fa-pinterest"></i></a>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+<!-- Modal end -->
+<app-footer></app-footer>

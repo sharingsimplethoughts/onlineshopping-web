@@ -1,0 +1,17 @@
+.featured-area .single-banner {
+  height: 340px !important;
+}
+.banner-thumb {
+  height: 100% !important;
+}
+.single-banner img {
+  height: 100% !important;
+  object-fit: cover;
+}
+.page-title-area {
+    padding: 140px 0;
+}
+.liked{
+  background: #eb4445;
+  color: white;  
+}

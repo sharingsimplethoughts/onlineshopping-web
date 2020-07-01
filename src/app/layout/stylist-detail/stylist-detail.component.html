@@ -1,0 +1,220 @@
+<app-header></app-header>
+
+<!-- header end -->
+<style>
+  .product-img {
+    height: 300px !important;
+  }
+
+  .product-img a {
+    height: 100% !important;
+  }
+
+  .product-img a img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .page-title-area {
+    padding: 0;
+    background-image: none !important;
+  }
+
+  .page-title-area img {
+    height: 260px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .liked { 
+    background: #fe4847 !important;
+    color: #fff !important;
+
+  }
+</style>
+<!-- page-title-area start -->
+
+<div class="page-title-area">
+  <ng-container *ngIf="stylist">
+  <img src="{{stylist.coverimg}}" alt="{{stylist?.name}}" />
+  </ng-container>
+</div>
+
+<!-- page-title-area end -->
+
+<div class="team-area des-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+        <div class="team-item">
+          <div class="team">
+            <div class="content">
+              <div class="avatar">
+                <ng-container *ngIf="stylist">
+                <img alt="" src="{{stylist?.profileimg}}">
+                </ng-container>
+              </div>
+              <h3 class="">{{stylist?.name}}</h3>
+              <h5 class="email">{{stylist?.email}}</h5>
+              <div class="col-md-12 col-sm-12 text-center" style="margin-top: 20px;">
+                <a class="btn" (click)="startChat()" data-animation="fadeInUp" data-delay="1.5s" tabindex="0"
+                  style="animation-delay: 1.5s;">Chat with {{stylist?.name}}</a>
+              </div>
+            </div>
+
+            <div class="product-tab" style="padding: 0 20px;">
+
+              <!-- Nav tabs -->
+
+              <ul class="product-nav" role="tablist">
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                    data-toggle="tab">Achievements</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+
+              <div class="tab-content">
+
+                <div role="tabpanel" class="tab-pane active" id="profile">
+                  <div class="row">
+                    <div class="product-curosel">
+                      <!-- single-product start   *ngFor="let ach_img of stylist.achievement.achievent_images" -->
+                      <ng-container *ngIf="stylist">
+                        <div class="col-sm-12 col-md-12" *ngFor="let ach_img of stylist.achievement.achievent_images">
+                          <div class="single-product">
+                            <div class="product-img">
+                              <a href="javascript:void(0)">
+                                <img src="http://mysite{{ach_img.image}}" alt="" />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <div class="col-sm-12 col-md-12 mmm">
+                        <div class="single-product">
+                          <div class="product-img">
+                            <a href="javascript:void(0)">
+                              <img src="http://mysite/media/user/achievement_img/c1.jpeg" alt="" />
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <p class="position text-justify" style="padding: 0 20px; margin-top: 20px;">{{stylist?.achievement?.title}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- team-area start -->
+
+<div class="featured-area pad-60">
+  <div class="container">
+    <ng-container *ngIf="stylist">
+      <div class="product-tab" *ngFor="let stylists of collections">
+        <!-- Nav tabs -->
+        <ul class="product-nav" role="tablist">
+          <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+              data-toggle="tab">{{stylists?.name}}</a></li>
+        </ul>
+        <div class="row">
+          <div class="col-md-3 col-sm-3" *ngFor="let product of stylists?.products">
+            <div class="single-product">
+              <div class="product-img">
+                <a routerLink="/product-details/{{stylist?.id}}/{{product?.id}}/">
+                  <h5  *ngIf="product?.colour_and_images?.offer>'0'">-{{product?.colour_and_images.offer}}%</h5>
+                  <img src="{{product?.main_img}}" alt="" />
+                  <!-- <img class="secondary-img" src="img/product/w13.jpg" alt="" /> -->
+                </a>
+                <div class="product-action">
+                  <div class="button-top">
+                    <a href="#" data-toggle="modal" ><i class="fa fa-eye" id="{{product?.id}}" (click)="view_product_detail($event)"></i></a>
+                    <a  routerLink="/cart"><i class="fa fa-shopping-cart"></i></a>
+                    
+                    <a (click)= "addToWishlist(product?.id, product?.is_in_wishlist)" [ngClass]="{'liked': product?.is_in_wishlist}"><i class="fa fa-heart"></i></a>
+                    <!-- <a href="javascript:void(0);" [ngClass]="{'liked': product?.is_in_wishlist}"><i class="fa fa-heart"></i></a> -->
+
+                  </div>
+                </div>
+              </div>
+              <div class="product-content">
+                <h3><a href="#">{{product?.name}}</a></h3>
+                <div class="price">
+                    <h5 style="margin-bottom: 5px;">by {{stylist?.name| uppercase}}</h5>
+                  <span>${{product?.colour_and_images.special_price}}</span>
+                  <span *ngIf="product?.colour_and_images?.offer>'0'" class="old">${{product?.colour_and_images.actual_price}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div class="col-md-12 col-sm-12 text-center" style="margin-top: 20px;">
+      <a class="btn" (click)="showAllProduct()" data-animation="fadeInUp" data-delay="1.5s" tabindex="0"
+        style="animation-delay: 1.5s;">View All</a>
+    </div>
+  </div>
+</div>
+
+<!-- featured-area end -->
+
+<!-- Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+    </div>
+    <div class="modal-body">
+    <div class="modal-img">
+      <a routerLink="#"><img src="{{view_product?.main_img}}" alt="" width="100%"/></a>
+    </div>
+    <div class="modal-pro-content">
+      <h3><a routerLink="#">{{view_product?.name}}</a></h3>
+      <div class="pro-rating">
+        <i class="fa fa-star" *ngFor="let star of stars"></i>
+        <i class="fa fa-star-o" *ngFor="let non_star of non_stars"></i>
+      </div>
+     <span>(5 customer reviews)</span>
+      <div class="price">
+        <span>${{view_product?.colour_and_images.special_price}}</span>
+        <span *ngIf="view_product?.colour_and_images?.offer>'0'" class="old">${{view_product?.colour_and_images.actual_price}}</span>
+        <span *ngIf="view_product?.colour_and_images?.offer>'0'" style="color: green;">  {{view_product?.colour_and_images.offer}}% off</span>
+
+      </div>
+      <p> {{view_product?.description}} </p>
+      <!-- <form action="#">
+        <input type="number" value="1" min="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+        <button type="button" ><a href="/product-details/{{stylist?.id}}/{{view_product?.id}}"></a>Add to cart</button>
+      </form> -->
+      <div>
+        <span class="posted_in">Categories: 
+          <a rel="tag" routerLink="#">{{view_product?.category.cat_name}}</a>            
+        </span> 
+
+      </div>
+      <div class="social">
+        <a routerLink="#"><i class="fa fa-facebook"></i></a>
+        <a routerLink="#"><i class="fa fa-twitter"></i></a>
+        <a routerLink="#"><i class="fa fa-google-plus"></i></a>
+        <a routerLink="#"><i class="fa fa-instagram"></i></a>
+        <a routerLink="#"><i class="fa fa-pinterest"></i></a>
+      </div>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+<!-- Modal end -->
+<app-footer></app-footer>

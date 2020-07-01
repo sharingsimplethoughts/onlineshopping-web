@@ -1,0 +1,111 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- page-title-area start -->
+<div class="page-title-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-heading text-center">
+          <h1>PRODUCT SINGLE STYLE</h1>
+          <p>We are a featured brand that calls itself fashion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- page-title-area end -->
+<!-- breadcrumb-area start -->
+<div class="breadcrumb-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-list">
+          <ul>
+            <li><a routerLink="/">HOME</a></li>
+            <li><span>Stylists</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb-area end -->
+<!-- shop-area start -->
+<div class="shop-area" style="padding-top:0px !important;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-title marg-50  text-center">
+          <h2>Our Stylists</h2>
+          <img src="assets/img/section-title.png" alt="" />
+        </div>
+      </div>
+      <!-- left-sidebar start -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+        <!-- widget-tags start -->
+
+
+
+        <aside class="widget product-tag" id="designer_list">
+          <ul>
+            <li><a href="#A" class="stylist_alpha">A</a></li>
+            <li><a href="#B" class="stylist_alpha">B</a></li>
+            <li><a href="#C" class="stylist_alpha">C</a></li>
+            <li><a href="#D" class="stylist_alpha">D</a></li>
+            <li><a href="#E" class="stylist_alpha">E</a></li>
+            <li><a href="#F" class="stylist_alpha">F</a></li>
+            <li><a href="#G" class="stylist_alpha">G</a></li>
+            <li><a href="#H" class="stylist_alpha">H</a></li>
+            <li><a href="#I" class="stylist_alpha">I</a></li>
+            <li><a href="#J" class="stylist_alpha">J</a></li>
+            <li><a href="#K" class="stylist_alpha">K</a></li>
+            <li><a href="#L" class="stylist_alpha">L</a></li>
+            <li><a href="#M" class="stylist_alpha">M</a></li>
+            <li><a href="#N" class="stylist_alpha">N</a></li>
+            <li><a href="#O" class="stylist_alpha">O</a></li>
+            <li><a href="#P" class="stylist_alpha">P</a></li>
+            <li><a href="#Q" class="stylist_alpha">Q</a></li>
+            <li><a href="#R" class="stylist_alpha">R</a></li>
+            <li><a href="#S" class="stylist_alpha">S</a></li>
+            <li><a href="#T" class="stylist_alpha">T</a></li>
+            <li><a href="#U" class="stylist_alpha">U</a></li>
+            <li><a href="#V" class="stylist_alpha">V</a></li>
+            <li><a href="#W" class="stylist_alpha">W</a></li>
+            <li><a href="#X" class="stylist_alpha">X</a></li>
+            <li><a href="#Y" class="stylist_alpha">Y</a></li>
+            <li><a href="#Z" class="stylist_alpha">Z</a></li>
+          </ul>
+        </aside>
+        <!-- widget-tags end -->
+        <br>
+         <div class="stylist-list" class="list-inline designer_list" id="{{group.key}}" *ngFor = "let group of result">
+           
+             <div class="style-title">
+                    <h3>{{group.key}}</h3>
+             </div>
+           <div class="row">
+                <div class="col-md-2" *ngFor = "let stylist of group.stylist">
+                  <div class="stylist-main">
+                      <a [routerLink]="['/stylist-detail/', stylist.id]">
+                        <img src="http://mysite{{stylist.profileimg}}" class="">
+                        <h6>{{stylist.name}}</h6>
+                      </a>
+                  </div>
+              </div>
+           </div>
+         </div> 
+        <!-- <ul class="list-inline designer_list" id="{{group.key}}" *ngFor = "let group of result" >
+          <h3>{{group.key}}</h3>
+          <li *ngFor = "let stylist of group.stylist" ><a [routerLink]="['/stylist-detail/', stylist.id]"><img src="http://mysite{{stylist.profileimg}}" width="60px" height="60px" class="rounded-circle user_img"><p>{{stylist.name}}</p></a></li>
+          
+        </ul> -->
+        
+        <br>
+      </div>
+      <!-- left-sidebar end -->
+    </div>
+  </div>
+</div>
+<!-- shop-area end -->
+<!-- footer start -->
+<app-footer></app-footer>

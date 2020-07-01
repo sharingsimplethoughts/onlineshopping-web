@@ -1,0 +1,107 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- page-title-area start -->
+<div class="page-title-area" id="uprofile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="title-heading">
+          <h3>My Account</h3>
+          <ul class="list-inline">
+            <li class="col-md-3 col-xs-6 active">
+              <a href="javascript:void(0)">
+                <h5>My Orders </h5>
+                <p>View, Modify &amp; Track Orders</p>
+              </a>
+            </li>
+            <li class="col-md-3 col-xs-6">
+              <a routerLink="/saved-cards">
+                <h5>Saved Cards </h5>
+                <p>Edit, Add or Remove Cards</p>
+              </a>
+            </li>
+            <li class="col-md-3 col-xs-6">
+              <a routerLink="/saved-address">
+                <h5>My Addresses </h5>
+                <p>Edit, Add or Remove Address</p>
+              </a>
+            </li>
+            <li class="col-md-3 col-xs-6">
+              <a routerLink="/profile">
+                <h5>My Profile </h5>
+                <p>Edit Personal Info, Change Password</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- page-title-area end -->
+<!-- login-area start -->
+<div class="login-area" style="padding: 40px 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        
+        <div class="user_orders" *ngFor="let order of orders">
+          <div class="orders_heading">
+            <a routerLink="/order-detail/{{order?.id}}" class="o_num btn"># {{order?.order_id}}</a>
+            <a routerLink="/order-detail/{{order?.id}}" class="t_order btn"><i class="fa fa-map-marker"></i> Track Order</a>
+          </div>
+          <div class="orders_body">
+            <a routerLink="/order-detail/{{order?.id}}" class="order_img"><img src="http://mysite{{order?.product_detail?.product?.main_img}}" /></a>
+            <div class="order_details">
+              <h5>{{order?.product_detail?.product?.made_by}}</h5>
+              <h3><a routerLink="/product-detail/{{order?.product_detail?.product?.id}}">{{order?.product_detail?.product?.name}}</a></h3>
+              <!--div class="price">
+                <span>$ 80</span>
+                <span class="old"> $ 120</span>
+                </div-->
+              <ul class="order_spec">
+                <li>
+                  <h6>Color : <strong>{{order?.product_detail?.selected_colour}}</strong> </h6>
+                </li>
+                <li>
+                  <h6>Size : <strong>{{order?.product_detail?.selected_size}}</strong></h6>
+                </li>
+                <li>
+                  <h6>Qty :  <strong>{{order?.product_detail?.selected_quantity}}</strong></h6>
+                </li>
+              </ul>
+              <!--div class="button-cart">
+                <button class="btn btn-md"><i class="fa fa-check"></i> Delivered</button>
+                </div-->
+            </div>
+
+             <!--div class="price">
+                <span>$ 80</span>
+                <span class="old"> $ 120</span>
+                </div-->
+            <div class="order_price">
+              <h4>$ {{order?.product_detail?.product?.price_details?.actual_price}}</h4>
+
+            </div>
+            <div class="order_status">
+              <h5>{{order_status[order?.order_status]}} on {{order?.latest_status?.created==null?order?.order_date:order?.latest_status?.created}}<br>
+                  <h5 style="color: green;">{{order_status[order?.order_status]}}</h5>
+              </h5>
+              <a routerLink="/order-detail/{{order?.id}}" class="btn btn-md">View Details</a>
+            </div>
+            <div class="order_view">
+              
+            </div>
+          </div>
+          <!-- <div class="orders_footer">
+            <h5 class="o_date">Ordered On : <strong>{{order?.order_date}}</strong></h5>
+            <h5 class="o_total">Order Total : <strong>$ {{order?.product_detail?.product?.price_details?.actual_price}}</strong></h5>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login-area end -->
+<!-- footer start -->
+<app-footer></app-footer>

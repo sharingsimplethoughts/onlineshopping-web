@@ -1,0 +1,148 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- login-area start  -->
+
+<div class="login-area" style="padding: 40px 0;">
+  <div class="container">
+    <div class="row justify-content-center h-100">
+      <div class="col-md-4 col-xl-6 chat">
+        <div class="card mb-sm-3 mb-md-0 contacts_card ">
+          <div *ngIf="yous" class="card-body contacts_body">
+              <ul *ngFor="let item of yous; let i= index;" class="contacts">
+                  <li class="active hlight-active">
+                    <!-- {{i}}{{item.name}} -->
+                    <div class="d-flex bd-highlight pointer">
+                            <div *ngIf="!item.profilePic" class="img_cont">
+                                  <img src="assets/img/sampleuser.png" class="rounded-circle user_img">
+                            </div>
+                            <div *ngIf="item.profilePic" class="img_cont">
+                                  <img src="http://mysite{{item.profilePic}}" class="rounded-circle user_img">
+                            </div>
+                            <div class="user_info">
+                                  <span id="{{item.id}}"  (click)="viewDetail($event.target.id)" style="color:#fff;">{{item.name}}
+                                        <span *ngIf="item.role==4" style="color:white; font-size: xx-small;  font-weight:bold ; margin-left: 5px;">(Stylist)</span>
+                                        <span *ngIf="item.role==3" style="color:white; font-size: xx-small;  font-weight:bold ; margin-left: 5px;">(Designer)</span>
+                                  </span>
+                            </div>
+                    </div>
+                  </li>
+              </ul>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+      <div [hidden]="isHiddenMsgDetail" class="col-md-8 col-xl-6 chat">
+        <div class="card">
+          <div class="card-body msg_card_body msg_card_body1">
+            <div *ngFor="let item of msgs">
+              <div *ngIf="item.from==you[0]">
+                  <div *ngIf="item.type=='call'" style="text-align: center; color: white;">
+                      ----------------call({{item.timestamp| date: 'h:mm a'}})----------------
+                    </div>
+                <div class="d-flex justify-content-start mb-4">
+                  <div *ngIf="you[3]!=''" class="img_cont_msg">
+                    <img src="http://mysite{{you[3]}}" class="rounded-circle user_img_msg">
+                  </div>
+                  <div *ngIf="you[3]==''" class="img_cont_msg">
+                    <img src="assets/img/sampleuser.png" class="rounded-circle user_img_msg">
+                  </div>
+                  <div *ngIf="item.type=='text'" class="msg_cotainer">
+                    {{item.content}}
+                    <span class="msg_time">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div>
+                  <!-- <div *ngIf="item.type=='call'" class="msg_cotainer">
+                    {{item.content}}
+                    <span class="msg_time">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div> -->
+                  <div *ngIf="item.type=='image'" class="msg_cotainer pr-0 bg-transparent">
+                    <a target="_blank" href="{{item.content}}" download>
+                    <img style="max-width: 100%; max-height: 80px;" download src="{{item.content}}" alt="">
+                    </a>
+                    <span class="msg_time">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div>
+                  <div *ngIf="item.type=='video'" class="msg_cotainer pr-0 bg-transparent">
+                    <video width="100%" height="110px;" controls>
+                      <source src="{{item.content}}" type="video/mp4">
+                      <source src="{{item.content}}" type="video/ogg">
+                      Your browser does not support the video tag.
+                    </video>
+                    <span class="msg_time">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div>
+                  <div *ngIf="item.type=='application'" class="msg_cotainer">
+                    
+                      <a href="{{item.content}}" download style="color: blue;"><i class="fa fa-file-archive-o" aria-hidden="true"></i><span>&nbsp;&nbsp;Download File</span></a>
+                    
+                    <!--  <a download href="{{item.msg}}" style="color: blue;">Shared a file (Click to download)</a>               -->
+                    <span class="msg_time">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="item.from==uid">
+                  <div *ngIf="item.type=='call'" style="text-align: center; color: white;">
+                      ----------------call({{item.timestamp| date: 'h:mm a'}})----------------
+                    </div>
+                <div class="d-flex justify-content-end mb-4">
+                  <div *ngIf="item.type=='text'" class="msg_cotainer_send mb-4">
+                    {{item.content}}
+                    <span class="msg_time_send">{{item.timestamp| date: 'h:mm a'}}</span>
+                      <!-- <span class="msg_time_send">{{item.timestamp| date: 'yyyy/MM/dd h:mm:ss a'}}</span> -->
+                  </div>
+                  <!-- <div *ngIf="item.type=='call'" class="msg_cotainer_send mb-4">
+                    {{item.content}}
+                    <span class="msg_time_send">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div> -->
+                  <div *ngIf="item.type=='image'" class="msg_cotainer_send pr-0 bg-transparent">
+                    <a target="_blank" href="{{item.content}}" download>
+                      <img style="max-width: 100%; max-height: 80px;" src="{{item.content}}" alt="">
+                    </a>
+                    <span class="msg_time_send">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div>
+                  <div *ngIf="item.type=='video'" class="msg_cotainer_send pr-0 bg-transparent">
+                    <video width="100%" height="110px;" controls>
+                      <source src="{{item.content}}" type="video/mp4">
+                      <source src="{{item.content}}" type="video/ogg">
+                      Your browser does not support the video tag.
+                    </video>
+                    <span class="msg_time_send">{{item.timestamp| date: 'h:mm a'}}</span>
+                  </div>
+                  <div *ngIf="item.type=='application'" class="msg_cotainer_send">
+                    <div class="" download>
+                      <a href="{{item.content}}" style="color: blue;"><i class="fa fa-file-archive-o" aria-hidden="true"></i><span>&nbsp;&nbsp;Uploaded File</span></a>
+                      </div>
+                    <!-- <a download href="{{item.msg}}" style="color: blue;">Shared a file (Click to download)</a>               -->
+                    <span class="msg_time_send">{{item.timestamp.timestamp| date: 'yyyy-MM-dd'}}</span>
+                    <!-- <span class="msg_time_send">9:05 AM, Today</span> -->
+                  </div>
+                  <div *ngIf="me[3]==''" class="img_cont_msg">
+                      <img src="assets/img/sampleuser.png" class="rounded-circle user_img_msg">
+                    </div>
+                    <div *ngIf="me[3]!=''" class="img_cont_msg">
+                      <img src="http://mysite{{me[3]}}" class="rounded-circle user_img_msg">
+                    </div>
+                  
+                  <!-- <div *ngIf="me[3]==''" class="img_cont_msg">
+                    <img src="assets/img/sampleuser.png" class="rounded-circle user_img_msg">
+                  </div>
+                  <div *ngIf="me[3]!=''" class="img_cont_msg">
+                    <img src="http://mysite{{me[3]}}" class="rounded-circle user_img_msg">
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login-area end -->
+
+
+
+
+<!-- footer start -->
+<app-footer></app-footer>
+
+
+
+

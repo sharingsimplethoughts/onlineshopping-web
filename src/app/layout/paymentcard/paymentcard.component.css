@@ -1,0 +1,16 @@
+#uprofile .list-inline li{
+    border-bottom: 1px solid #efefef !important;
+}
+.payform{
+    margin: auto;
+}
+.payform input{
+    color: #31325F;
+    font-size: 18px;
+    font-weight: 300;
+    font-family:  Helvetica, sans-serif;
+}
+.payform input ::placeholder{color: #8f91d9;}
+.savdCard{
+    margin-top: 3%;
+}

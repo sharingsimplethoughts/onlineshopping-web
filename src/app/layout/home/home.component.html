@@ -1,0 +1,304 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- slider-area start  -->
+<div class="slider-area">
+  <div class="slider-active">
+    <div class="single-slider slide-height d-flex align-items-center" data-background="assets/img/slider/slide3.jpg">
+      <div class="container hidden-xs">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="slide-content slide-white">
+              <h1 data-animation="fadeInUp" data-delay=".5s">Best Fashion Shop</h1>
+              <p data-animation="fadeInUp" data-delay="1s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                <br> eiusmod tempor incididunt ut labore et dolore magna
+              </p>
+              <a class="btn btn-white" routerLink="/product-list" data-animation="fadeInUp" data-delay="1.5s">shop now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="single-slider slide-height d-flex align-items-center" data-background="assets/img/slider/slide2.jpg">
+      <div class="container hidden-xs">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="slide-content slide-white text-center">
+              <h1 data-animation="fadeInUp" data-delay=".5s">Trendy Fashion Shop</h1>
+              <p data-animation="fadeInUp" data-delay="1s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                <br> eiusmod tempor incididunt ut labore
+                et dolore magna
+              </p>
+              <a class="btn btn-white" routerLink="/product-list" data-animation="fadeInUp" data-delay="1.5s">shop now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="single-slider slide-height d-flex align-items-center" data-background="assets/img/slider/slide1.jpg">
+      <div class="container hidden-xs">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="slide-content slide-white">
+              <h1 data-animation="fadeInUp" data-delay=".5s">Best Fashion Shop</h1>
+              <p data-animation="fadeInUp" data-delay="1s">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                <br> eiusmod tempor incididunt ut labore
+                et dolore magna
+              </p>
+              <a class="btn btn-white" routerLink="/product-list" data-animation="fadeInUp" data-delay="1.5s">shop now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- slider-area end -->
+<!-- banner-area start -->
+<div class="banner-area bg-color pad-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="single-banner banner-item1">
+          <a class="banner-thumb" routerLink="/">
+          <img src="assets/img/sm-banner.jpg" alt="" />
+          </a>
+          <!--div class="banner-caption">
+            <h2><a routerLink="/">women fashion</a></h2>
+            <span class="btn btn-danger">Try in 3D</span>
+            </div-->
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="single-banner banner-item1">
+          <a class="banner-thumb" routerLink="/">
+          <img src="assets/img/sm-banner-2.jpg" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- banner-area end -->
+<!-- featured-area start -->
+<div class="featured-area pad-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="single-banner banner-item2">
+          <a class="banner-thumb" routerLink="/product-list">
+          <img src="assets/img/dress.jpg" alt="" />
+          </a>
+          <div class="banner-caption">
+            <h2><a routerLink="/product-list">Sportswear</a></h2>
+            <span class="shop-cat-subtitle">40 - 80% off >></span>
+            <a routerLink="/product-list" class="shop_now">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="single-banner banner-item2">
+          <a class="banner-thumb" routerLink="/product-list">
+          <img src="assets/img/dress.jpg" alt="" />
+          </a>
+          <div class="banner-caption">
+            <h2><a routerLink="/product-list">Sportswear</a></h2>
+            <span class="shop-cat-subtitle">40 - 80% off >></span>
+            <a routerLink="/product-list" class="shop_now">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="single-banner banner-item2">
+          <a class="banner-thumb" routerLink="/product-list">
+          <img src="assets/img/dress.jpg" alt="" />
+          </a>
+          <div class="banner-caption">
+            <h2><a routerLink="/product-list">Sportswear</a></h2>
+            <span class="shop-cat-subtitle">40 - 80% off >></span>
+            <a routerLink="/product-list" class="shop_now">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- featured-area end -->
+*****************************************
+
+<!-- shop with stylist -->
+
+<div class="featured-area pad-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-tab">
+          <!-- Nav tabs -->
+          <ul class="product-nav" role="tablist">
+            <li role="presentation"><a routerLink="/profile" aria-controls="profile" role="tab" data-toggle="tab">Shop with stylists</a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="profile">
+              <div class="row">
+                <div class="product-curosel">
+
+                  <!-- single-product start -->
+                  <div class="col-md-12" *ngFor="let stylist_product of stylist_products">
+                      <div class="single-product">
+                          <div class="product-img">
+                            <a routerLink="/product-detail">
+                              <h5 *ngIf="stylist_product?.colour_and_images?.offer>'0'">-{{stylist_product?.colour_and_images.offer}}%</h5>
+                              <img src="http://mysite{{stylist_product.main_img}}" alt="" />
+                              <img class="secondary-img" src="http://mysite{{stylist_product?.colour_and_images?.product_images?.image}}" alt=""/>
+                            </a>
+                            <div class="product-action">
+                              <div class="button-top">
+                                <a href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a>
+                                <a href="#" ><i class="fa fa-shopping-cart"></i></a>
+                                <a href="#" ><i class="fa fa-heart"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-content">
+                            <h3><a href="#">{{stylist_product?.name}}</a></h3>
+                            <div class="price">
+                              <h5 style="margin-bottom: 5px;">by {{stylist_product?.profile_name | uppercase}}</h5>
+                              <span>${{stylist_product?.colour_and_images.special_price}}</span>
+                              <span *ngIf="stylist_product?.colour_and_images?.offer>'0'" class="old">${{stylist_product?.colour_and_images.actual_price}}</span>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+
+                  <!-- <div class="col-md-12">
+                    
+                </div> -->
+                  <!-- single-product end -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- featured-area end -->
+<div class="featured-area pad-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-tab">
+          <!-- Nav tabs -->
+          <ul class="product-nav" role="tablist">
+            <li role="presentation"><a routerLink="/profile" aria-controls="profile" role="tab" data-toggle="tab">Shop with Designers</a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="profile">
+              <div class="row">
+                <div class="product-curosel">
+
+
+                   <!-- single-product start -->
+                  <div class="col-md-12" *ngFor="let designer_product of designer_products">
+                      <div class="single-product">
+                          <div class="product-img">
+                            <a routerLink="/product-detail">
+                              <h5 *ngIf="designer_product?.colour_and_images?.offer>'0'" >-{{designer_product?.colour_and_images.offer}}%</h5>
+                              <img src="http://mysite{{designer_product.main_img}}" alt="" />
+                              <img class="secondary-img" src="http://mysite{{designer_product?.colour_and_images?.product_images?.image}}" alt=""/>
+                            </a>
+                            <div class="product-action">
+                              <div class="button-top">
+                                <a href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a>
+                                <a href="#" ><i class="fa fa-shopping-cart"></i></a>
+                                <a href="#" ><i class="fa fa-heart"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-content">
+                            <h3><a href="#">{{designer_product?.name}}</a></h3>
+                            <div class="price">
+                                <h5 style="margin-bottom: 5px;">by {{designer_product?.profile_name | uppercase}}</h5>
+                              <span>${{designer_product?.colour_and_images.special_price}}</span>
+                              <span *ngIf="designer_product?.colour_and_images?.offer>'0'" class="old">${{designer_product?.colour_and_images.actual_price}}</span>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+                  <!-- single-product end -->
+            
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- featured-area end -->
+<div class="featured-area pad-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-tab">
+          <!-- Nav tabs -->
+          <ul class="product-nav" role="tablist">
+            <li role="presentation"><a routerLink="/profile" aria-controls="profile" role="tab" data-toggle="tab">Best Sales Product</a></li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="profile">
+              <div class="row">
+                <div class="product-curosel">
+
+
+                  <!-- single-product start -->
+                  <div class="col-md-12" *ngFor="let manufacturer_product of manufacturer_products">
+                      <div class="single-product">
+                          <div class="product-img">
+                            <a routerLink="/product-detail">
+                              <h5 *ngIf="manufacturer_product?.colour_and_images?.offer>'0'">-{{manufacturer_product?.colour_and_images.offer}}%</h5>
+                              <img src="http://mysite{{manufacturer_product.main_img}}" alt="" />
+                              <img class="secondary-img" src="http://mysite{{manufacturer_product?.product_images?.image}}" alt=""/>
+                            </a>
+                            <div class="product-action">
+                              <div class="button-top">
+                                <a href="#" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i></a>
+                                <a href="#" ><i class="fa fa-shopping-cart"></i></a>
+                                <a href="#" ><i class="fa fa-heart"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="product-content">
+                            <h3><a href="#">{{manufacturer_product?.name}}</a></h3>
+                            <div class="price">
+                              <span>${{manufacturer_product?.colour_and_images.special_price}}</span>
+                              <span *ngIf="manufacturer_product?.colour_and_images?.offer>'0'" class="old">${{manufacturer_product?.colour_and_images.actual_price}}</span>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+                  <!-- single-product end -->
+
+                  <!-- <div class="col-md-12">
+                    
+                </div> -->
+
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- featured-area end -->
+<!-- footer start -->
+<app-footer></app-footer>
+

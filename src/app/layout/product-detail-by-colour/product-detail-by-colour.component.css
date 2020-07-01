@@ -1,0 +1,41 @@
+.liked{
+    background: #eb4445;
+    color: white;  
+}
+.rating{
+    margin-top: 7px;
+}
+
+.product-offers.well{
+	padding: 12px 13px;
+    border: 1px dashed #bdbdbd;
+    margin-top: 20px;
+}
+.product-offers.well h5{
+	font-weight: 500;
+}
+.product-offers.well h5 small{
+	float: right;
+    font-weight: 600;
+	text-transform: capitalize;
+}
+.product-offers.well h5 small span{
+	color: #fe4847;
+}
+.product-offers.well h6{
+	margin-bottom: 0;
+    margin-top: 10px;
+	font-weight: 400;
+}
+
+.product-offers.well[_ngcontent-c4] {
+    padding: 12px 13px;
+    border: 1px dashed #bdbdbd;
+    margin-top: 20px;
+}
+.product-share .panel-body{
+    padding-bottom: 15px !important;
+}
+#product-desc-t > li {
+    margin: 3px 0 !important;
+}

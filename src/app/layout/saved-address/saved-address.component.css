@@ -1,0 +1,46 @@
+#uprofile .list-inline li{
+    border-bottom: 1px solid #efefef !important;
+}
+
+
+.cart_card button.close{
+    font-size: 21px !important;
+    color: #fe4847 !important;
+}
+.cart_card .product-thumbnail a img {
+    width: 100%;
+    height: 120px;
+    object-fit: scale-down;
+}
+
+.login-content form label{
+    display: block;
+}
+#sel-country{
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    font-size: 13px;
+    height: 40px;
+    margin-bottom: 25px;
+    padding-left: 10px;
+    width: 40%;
+    float: left;
+    text-transform: capitalize;
+}
+#ent-mob{
+    width: 60%;
+float: left;
+}
+
+.has-error{
+    border: 1px solid red !important;
+        
+}
+.error{
+    color: red;
+    font-weight: lighter;
+}
+
+form.add-form .row{
+    margin: 0 -7px !important;
+}

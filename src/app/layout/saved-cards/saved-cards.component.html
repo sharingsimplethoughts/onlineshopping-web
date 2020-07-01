@@ -1,0 +1,178 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- page-title-area start -->
+<div class="page-title-area" id="uprofile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="title-heading">
+          <h3>My Account</h3>
+          <ul class="list-inline">
+            <li class="col-md-3 col-xs-6">
+              <a routerLink="/orders">
+                <h5>My Orders </h5>
+                <p>View, Modify &amp; Track Orders</p>
+              </a>
+            </li>
+            <li class="col-md-3 col-xs-6 active">
+              <a href="javascript:void(0)">
+                <h5>Saved Cards </h5>
+                <p>Edit, Add or Remove Cards</p>
+              </a>
+            </li>
+            <li class="col-md-3 col-xs-6">
+              <a routerLink="/saved-address">
+                <h5>My Addresses </h5>
+                <p>Edit, Add or Remove Addresses</p>
+              </a>
+            </li>
+            <li class="col-md-3 col-xs-6">
+              <a routerLink="/profile">
+                <h5>My Profile </h5>
+                <p>Edit Personal Info, Change Password</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- page-title-area end -->
+
+
+
+<!-- login-area start -->
+<div class="login-area" style="padding: 40px 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <button data-toggle="modal" data-target="#productModal" title="Add New Address" class="btn add_address"><i
+            class="fa fa-plus"></i> Add A New Card</button>
+      </div>
+
+      <div class="col-md-4 savdCard" *ngFor="let card of savedCards">
+        <div class="cart_card saved_cards">
+          <h2 class="fs-title">{{card.name}}
+            <a href="javascript:void(0)" (click)=deleteCard(card.id)>
+              <span>
+                <i class="fa fa-trash"></i>
+              </span>
+            </a>
+          </h2>
+          <div class="product-content">
+            <h3><img src="assets/img/visa_card.png" class="cards_icon" /><strong>{{card.card}}</strong></h3>
+            <h5>State Bank of India Debit Card</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- save card Modal-->
+    <div class="modal fade saved_cards" id="productModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">x</span></button>
+          </div>
+          <div class="modal-body payform">
+            <!-- Payment ngx-stripe -->
+            <form novalidate (ngSubmit)="saveCard()" [formGroup]="stripeTest">
+              <div class="row">
+                <div class="col-md-11">
+                  <div class="checkout-form-list">
+                    <input type="text" formControlName="name" placeholder="Enter Full Name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-11">
+                  <div class="checkout-form-list">
+                    <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <span style="color:red;margin-top: 5px">{{errormessage}}</span>
+              </div>
+              <div class="order-button-payment">
+                <button type="submit" class="btn btn-light">Save Card Details</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal -->
+    <!-- <div class="modal fade saved_cards" id="productModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="checkout-form-list">
+                  <input type="text" placeholder="Enter card number" />
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="checkout-form-list">
+                  <label>Expiry</label>
+                  <select>
+                    <option>MM</option>
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                  </select>
+                  <select>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="checkout-form-list">
+                  <input type="text" placeholder="Name On Card" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="checkout-form-list">
+                  <input type="text" placeholder="CVV" />
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="order-button-payment">
+                  <input type="submit" value="Save" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- Modal end -->
+  </div>
+</div>
+<!-- login-area end -->
+<!-- footer start -->
+<app-footer></app-footer>

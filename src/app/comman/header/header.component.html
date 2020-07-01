@@ -1,0 +1,280 @@
+<!-- {{ message1 | async | json }} -->
+<!-- header start -->
+
+<header id="headerWrapper">
+  <!-- <div *ngIf="message1 | async as msg">
+    <div *ngIf="msg['profile_pic_other']!=''" style="display: inline-block; vertical-align: top;">
+       <img src="http://mysite{{msg['profile_pic_other']}}" width="30px;" height="30px;" alt=""> &nbsp;&nbsp; You have a call..!!&nbsp;&nbsp;
+    </div>
+    <div *ngIf="msg['profile_pic_other']==''" style="display: inline-block; vertical-align: top;">
+        <img src="assets/img/sampleuser.png" width="30px;" height="30px;" alt="">&nbsp;&nbsp;You have a call..!!&nbsp;&nbsp;
+    </div>
+    
+    <button (click)="acceptCall()">Accept</button>&nbsp;&nbsp;
+    <button (click)="rejectCall()">Reject</button>
+  </div> -->
+  
+
+  <div class="header-top-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 hidden-xs">
+          <div class="top-info">
+            <ul>
+              <li>
+                <a href="javascript:void(0)" id="locate_me" type="button" class="open-nav is-closed animated fadeInLeft"><i class="fa fa-map-marker"></i>&nbsp;&nbsp; Locate Me</a>
+              </li>
+              <li><a href="javascript:void(0);"><i class="fa fa-headphones"></i>&nbsp;&nbsp; Contact Us</a></li>
+              <!-- <li id="chat_link" class="account hidden-xs"><a class="pointer login" (click)="callChat()"><i class="fa fa-file-text"></i>&nbsp;&nbsp; Chat</a></li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="top-nav">
+            <div class="account hidden-xs">
+              <a id="returns_link" class="login" href="javascript:void(0);"><i class="fa fa-refresh"></i>&nbsp;&nbsp; Returns</a>
+            </div>
+            <div class="account hidden-xs">
+              <a id="orders_link" class="login" routerLink="/orders"><i class="fa fa-location-arrow"></i>&nbsp;&nbsp; Track Order</a>
+            </div>
+            <div class="language dropdown" style="border-left: 1px solid #545454;">
+              <ul>
+                <li><a href="javascript:void(0);"><i class="fa fa-file-text"></i>&nbsp;&nbsp; English</a>
+                  <ul>
+                    <li><a href="javascript:void(0);">Vietnamese</a></li>
+                    <li><a href="javascript:void(0);">English</a></li>
+                    <li><a href="javascript:void(0);">Korean</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- header-bottom-area start -->
+  <div id="sticker" class="header-bottom-area">
+      <div id="showNotification" style="display: none; color: white;" class="style-title">
+          <div style="display: inline-block; vertical-align: top; font-weight: bold;">
+             <img id="showNotPic" src="assets/img/sampleuser.png" class="rounded-circle user_img_msg" alt=""> &nbsp;&nbsp; You have a call..!!&nbsp;&nbsp;
+          </div>
+          <button (click)="acceptCall()" style="background-color: green;">Accept</button>&nbsp;&nbsp;
+          <button (click)="rejectCall()" style="background-color: red;">Reject</button>
+        </div>
+    <div class="container">
+      <div class="inner-container">
+        <div class="row">
+          <div class="col-md-2 col-sm-4 col-lg-2">
+            <div class="logo">
+              <a routerLink="/"><img src="assets/img/logo.png" alt="" /></a>
+            </div>
+          </div>
+          <div class="col-md-7 col-lg-8 hidden-xs hidden-sm">
+            <div class="main-menu">
+              <nav>
+                <ul>
+                  <li><a [routerLink]="['/product-categories',2]">Women</a></li>
+                  <li><a [routerLink]="['/product-categories',1]">Men</a></li>
+                  <li><a [routerLink]="['/product-categories',3]">Kids</a></li>
+
+                  <li id="sty_des"><a >Stylists/Designers</a>
+                    <div class="mega-menu mega-menu-2">
+                      <span class="mega-menu-img">
+                        <a ><img alt="" src="assets/img/mg-menu.png"></a>
+                      </span>
+                      <span>
+                        <h5  class="mega-title"> Stylists/Designers </h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat </p>
+                        <a class="mg-btn" routerLink="/stylist-list">Continue with Stylist</a>
+                        <br>
+                        <a class="mg-btn" routerLink="/designer-list">Continue with Designer</a>
+                      </span>
+                    </div>
+                  </li>
+                  <li>
+                    <form class="navbar-form" role="search">
+                        <div class="input-group add-on">
+                          <input class="form-control" [(ngModel)]="searchString" required placeholder="Search for items, brands and inspiration" name="srch-term" id="srch-term" type="text">
+                          <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"  (click)="doSearch()"><i class="fa fa-search"></i></button>
+                          </div>
+                        </div>
+                    </form>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-2 col-sm-8 col-xs-12 header-right">
+            <button class="mobileBtn"><span></span></button>
+            <div class="main-menu profile">
+              <nav>
+                <ul>
+                  <li><a class="user_ac" href="javascript:void(0)">{{userName}}</a>
+                    <ul>
+                      <li><a *ngIf="login" routerLink="/profile">My Profile</a></li>
+                      <li><a *ngIf="login" routerLink="/orders">My Order</a></li>
+                      <li><a *ngIf="login" routerLink="/saved-address">My Address</a></li>
+                      <li><a *ngIf="login" routerLink="/reset-password">Change Password</a></li>
+                      <li><a *ngIf="login" routerLink="/wishlist">My wishlist</a></li>
+                      <li><a *ngIf="login" routerLink="/cart">My cart</a></li>
+                      <li><a *ngIf="login" routerLink="/i-chat-log">My chat</a></li>
+                      <li><a *ngIf="!login" routerLink="/login" >Login</a></li>
+                      <li><a *ngIf="!login" routerLink="/register" >Signup</a></li>
+                      <li><a *ngIf="login" routerLink="javascript:void(0);" (click)="logout()">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="header-search">
+              <div class="dropdown">
+                <a href="javascript:void(0);" routerLink="/wishlist"  class="search-open">
+                  <img style="width: 30px;" src="assets/img/wishlist_icon.png" alt="" />
+                  <div *ngIf="login">
+                    <span *ngIf="cartCount>0" id="wishlistCount">{{wishlistCount}}</span>
+                  </div>
+                </a>
+              </div>
+            </div>  
+
+            <div class="my-cart">
+              <div class="total-cart">
+                <a href="javascript:void(0);" routerLink="/cart">
+                  <img src="assets/img/cart/cart.png" alt="" />
+                  <div *ngIf="login">
+                    <span *ngIf="cartCount>0" id="cartCount">{{cartCount}}</span>
+                  </div>
+                </a>
+              </div>
+              <!-- <ul>
+                
+
+                
+                <li *ngFor = "let cart_item of cart_items">
+                  <div class="cart-img">
+                    <a href="javascript:void(0);"><img alt="" src="http://mysite{{cart_item.product.main_img}}"></a>
+                  </div>
+                  <div class="cart-info">
+                    <h4><a href="javascript:void(0);">{{cart_item.product.name}}</a></h4>
+                    <span>${{cart_item.product.price_details.special_price}} <span>x {{cart_item.selected_quantity}}</span></span>
+                  </div>
+                  
+                </li>
+              
+                <li *ngIf="cart_items.length!=0">
+                  <a class="cart-button" href="javascript:void(0);" routerLink="/cart">view cart</a>
+                  <a class="checkout" href="javascript:void(0);" routerLink="/checkout">checkout</a>
+                </li>
+
+                <li *ngIf="cart_items.length==0">
+                  <div>
+                    <h4 style="text-align:center;padding: 4px;
+                    "> Your cart is empty</h4> 
+                  </div>
+                </li>
+
+              </ul> -->
+
+            </div>
+            <!--div class="header-search">              
+              <div class="dropdown">
+                <a href="javascript:void(0);" class="search-open">
+                  <img src="assets/img/search.png" alt="" />
+                </a>
+                <div class="search-inside animated bounceInUp"> <i class="icon-close search-close fa fa-times"></i>
+                  <div class="search-overlay"></div>
+                  <div class="position-center-center">
+                  <div class="search">
+                    <form>
+                    <input type="search" placeholder="Search Shop">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header-bottom-area end -->
+  <!-- mobile-menu-area start -->
+  <div class="mobile-menu-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mobile-menu">
+            <nav id="dropdown">
+              <ul>
+                <li><a href="javascript:void(0);">Home</a>
+                </li>
+                <li><a href="javascript:void(0);">Shop</a>
+                  <ul>
+                    <li><a routerLink="product-categories.php">WOMEN </a>
+                      <ul>
+                        <li><a href="javascript:void(0);">casual shirt</a></li>
+                        <li><a href="javascript:void(0);">rikke t-shirt</a></li>
+                        <li><a href="javascript:void(0);">mia top </a></li>
+                        <li><a href="javascript:void(0);">muscle tee</a></li>
+                      </ul>
+                    </li>
+                    <li><a routerLink="product-categories.php">MEN</a>
+                      <ul>
+                        <li><a href="javascript:void(0);">casual shirt</a></li>
+                        <li><a routerLink="/">rikke t-shirt</a></li>
+                        <li><a routerLink="/">mia top </a></li>
+                        <li><a routerLink="/">muscle tee</a></li>
+                      </ul>
+                    </li>
+                    <li><a routerLink="product-categories.php">KIDS</a>
+                      <ul>
+                        <li><a routerLink="/">necklace </a></li>
+                        <li><a routerLink="/">chunky short striped</a></li>
+                        <li><a routerLink="/">samhar cuff </a></li>
+                        <li><a routerLink="/">nail set</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a routerLink="/">Stylists/Designers</a></li>
+                <li><a routerLink="/">Locate Me</a></li>
+                <li><a routerLink="/">Returns</a></li>
+                <li><a routerLink="/">Track Order</a></li>
+                <li><a routerLink="/">Contact Us</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- mobile-menu-area end -->
+  <div id="wrapper">
+    <div class="overlay"></div>
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+      <ul class="nav sidebar-nav">
+        <li>
+          <a href="javascript:void(0)" class="close">&times;</a>
+        </li>
+        <br>
+        <br>
+        <br>
+        <li>
+          <input class="form-control" ngx-google-places-autocomplete  #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" type="text" placeholder="Search For Your Location" id="custom_location">
+        </li>
+        <br>
+        <br>
+        <li>
+          <div id="c-location" (click)="getCurrentLocation()" class="get_current_location"><i class="fa fa-location-arrow"></i> &nbsp;&nbsp; Get Current Location</div>
+        </li>                  
+      </ul>
+    </nav><!-- /#sidebar-wrapper -->
+  </div>
+</header>

@@ -1,0 +1,70 @@
+<app-header></app-header>
+		<!-- header end -->
+
+		<!-- page-title-area start -->
+		<div class="page-title-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="title-heading text-center">
+							<h1>PRODUCT SINGLE STYLE</h1>
+							<p>We are a featured brand that calls itself fashion</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- page-title-area end -->
+		<!-- breadcrumb-area start -->
+		<div class="breadcrumb-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="breadcrumb-list">
+							<ul>
+								<li><a href="">HOME</a></li>
+								<li><span>Designers</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- breadcrumb-area end -->
+		
+		<div class="team-area shop-area pad-60">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title marg-50  text-center">
+							<h2>Our Designers</h2>
+							<img src="assets/img/section-title.png" alt="" />
+						</div>
+					</div>
+        </div>
+        
+				<div class="row">
+
+					<div class="col-md-3 col-sm-4" *ngFor="let designer of designers">
+						<div class="team-item">
+							<div class="team">
+								<a rel="tag" routerLink="/designer-detail/{{designer.id}}">
+								<div class="content">
+									<div class="avatar">
+										<img alt="" src="http://mysite{{designer.profileimg}}">
+									</div>
+									<a  rel="tag" routerLink="/designer-detail/{{designer.id}}">
+									<h3 class="name">{{designer.name}}</h3></a>
+									<p class="position text-justify">{{designer.des | slice:0:150}}. . . </p>
+								</div>
+								</a>
+							</div>
+						</div>
+          </div>
+
+				</div>
+			</div>
+		</div>
+		<!-- team-area start -->
+
+    <app-footer></app-footer>

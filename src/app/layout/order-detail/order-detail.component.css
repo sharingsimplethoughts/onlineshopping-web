@@ -1,0 +1,52 @@
+.login-content{
+  padding: 0px !important;
+}
+#uprofilebtn{
+  margin-top: 0px;
+}
+
+ /* rating */
+.starrating{
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.starrating > input {
+  display: none;
+} 
+.starrating > label:before { 
+  content: "\f005"; 
+  margin: 2px 3px;
+  font-size: 20px;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+.starrating > label{
+  color: #b5b5b5;
+  cursor: pointer;
+}
+.starrating > input:checked ~ label, .starrating > input:hover ~ label{ 
+  color:#fe4847;
+}
+
+.star_rating h2 {
+  font-size: 27px;
+  text-transform: uppercase;
+}
+.star_rating p {
+  font-size: 17px;
+  color: #78e2fb;
+  clear: both;
+  margin-bottom: 3px;
+}
+.star_rating h4 {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+.login-content form {
+  margin-top: 11px;
+}
+#return-order .modal-header {
+  padding: 10px;
+}

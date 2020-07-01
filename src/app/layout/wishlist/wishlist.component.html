@@ -1,0 +1,64 @@
+<app-header></app-header>
+<!-- header end -->
+
+	<!-- cart-main-area start -->
+  <div class="cart-main-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+
+						<form id="msform">
+				            <!-- fieldsets -->
+				            <fieldset>
+				            	<div class="col-sm-8 col-sm-offset-2 col-xs-12" style="margin-bottom: 20px;">
+				            		<div class="cart_card">
+				            			<h2 class="fs-title">My Wishlist</h2>
+				            			<div class="row">
+
+                            <div  *ngIf="this.wishlist_items?.length==0">
+                                <h4>
+                                    No item in wishlist
+                                </h4>
+                              </div>
+
+				            				<div class="col-md-12" *ngFor= "let wishlist of wishlist_items">
+				            					<button type="button" (click)=removeFromWishlist(wishlist?.product.id) class="close" data-dismiss="modal" title="Remove from wishlist"><i class="fa fa-trash"></i>
+				            					</button>
+					            				<div class="cart_product">
+					            					<div class="col-md-2 product-thumbnail">
+                                  
+					            						<a routerLink ="/product-detail/{{wishlist?.product.id}}/" href="javascript:void(0);" *ngIf="wishlist?.product.user_role== '5' || wishlist?.product.user_role=='2'" ><img src="http://mysite{{wishlist?.product.main_img}}" alt="" /></a>
+                                  <a routerLink="/product-details/{{wishlist?.product.made_by.id}}/{{wishlist?.product.id}}/" href="javascript:void(0);" *ngIf="wishlist?.product.user_role == '3' || wishlist?.product.user_role=='4'" ><img src="http://mysite{{wishlist?.product.main_img}}" alt="" /></a>
+
+                                </div>
+					            					<div class="col-md-10 product-content">
+					            						<h5>{{wishlist?.product.made_by.name}}</h5>
+                            <h3><a href="javascript:void(0);" routerLink ="/product-detail/{{wishlist?.product.id}}/"  *ngIf="wishlist?.product.user_role== '5' || wishlist?.product.user_role=='2'">{{wishlist?.product.name}}</a></h3>
+                            <h3><a href="javascript:void(0);" routerLink="/product-details/{{wishlist?.product.made_by.id}}/{{wishlist?.product.id}}/"  *ngIf="wishlist?.product.user_role == '3' || wishlist?.product.user_role=='4'">{{wishlist?.product.name}}</a></h3>
+														<div class="price">
+															<span>$ {{wishlist?.product.price_details.special_price}}</span>
+															<span class="old"> $ {{wishlist?.product.price_details.actual_price}}</span>
+														</div>
+														<!-- <div class="button-cart">
+                              <button  routerLink ="/product-detail/{{wishlist?.product.id}}/"  *ngIf="wishlist?.product.user_role== '5' || wishlist?.product.user_role=='2'"><i class="fa fa-shopping-cart"></i> Move to Cart</button>
+                              <button routerLink="/product-details/{{wishlist?.product.made_by.id}}/{{wishlist?.product.id}}/"  *ngIf="wishlist?.product.user_role == '3' || wishlist?.product.user_role=='4'"><i class="fa fa-shopping-cart"></i> Move to Cart</button>
+														</div> -->
+					            					</div>
+					            				</div>
+				            				</div>
+				            				
+										</div>
+				            		</div>
+				            	</div>
+				            </fieldset>
+				        </form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- cart-main-area end -->
+
+
+
+
+<app-footer></app-footer>

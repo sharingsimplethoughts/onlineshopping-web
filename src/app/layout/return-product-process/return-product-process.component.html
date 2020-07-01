@@ -1,0 +1,197 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- login-area start -->
+<div class="login-area" style="padding: 40px 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <div class="user_orders user_order_detail">
+          <div class="orders_body">
+            <a class="order_img"><img src="http://mysite{{product_detail?.product_image}}" /></a>
+            <div class="order_details">
+              <h3><a routerLink="">{{product_detail?.name}}</a></h3>
+              <!--div class="price">
+                <span>$ 80</span>
+                <span class="old"> $ 120</span>
+              </div-->
+              <ul class="order_spec">
+                <li>
+                  <h6>Size : <strong>{{product_detail?.selected_size}}</strong></h6>
+                </li>
+                
+                <!-- <li>
+                    <div class="pro-rating rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                </li> -->
+                <li>
+                  {{product_detail?.product_description}}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <div class="user_orders user_order_detail">
+          <div class="echange-m">
+            <div class="exchange-main text-center border-bottom">
+              <h3>PAYMENT DETAILS</h3>
+            </div>
+             <div class="exhange-amount">
+                <ul>
+                    <li>Initial Amount</li>
+                    <li>${{payment_detail?.initial_ammount}}</li>
+                    <li>Exchange Amount</li>
+                    <li>${{payment_detail?.exchange_amount}}</li>
+                </ul>
+             </div> 
+             <div class="exhange-amount1">
+              <ul>
+                  <li>Total</li>
+                  <li>${{payment_detail?.grand_total}}</li>
+              </ul>
+           </div> 
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <a class="action-button btn btn-default float-right" id="ckout_btn" name="next" type="button" (click)="proceedCheck()" >PROCEED</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login-area end -->
+
+<div class="modal fade" id="cancel-order">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content coupon">
+      <div class="modal-body cncl-order">
+          <h4 class="text-center">To cancel, you have to call to hotline</h4>
+          <div class="clncl-order-call">
+            3498038430
+          </div>
+          <ol>
+              <li>Cancellation will only be accepted if your order has not been shipped.</li>
+              <li>You can not guarntee that your order will be cancelled as we aim to fulfill all orders withen the next business day.</li>
+              <li>Successful order Cancellation are subjected to a $5.00 Administration /Cancellation fee.</li>
+          </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="return-order">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="display: contents;">Return Order</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+         <div class="col-md-12">
+          <div class="exchange-order">
+            <h5>Select any of the Reason</h5> 
+           <div id="text-val"></div>
+              <ul>
+                <li>
+                  <span>
+                    <input id="{{'radio'+i}}" class="radio-custom  ml-1" name="radio-group" type="radio"  [(ngModel)]="readioSelected">
+                    <label title="Select Address" for="{{'radio'+i}}" class="radio-custom-label"></label>
+                   &nbsp; Product quality is not good.
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <input id="{{'radio'+i}}" class="radio-custom  ml-1" name="radio-group" type="radio">
+                    <label title="Select Address" for="{{'radio'+i}}" class="radio-custom-label"></label>
+                    &nbsp; This is not the product that i ordered
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    <input id="{{'radio'+i}}" class="radio-custom ml-1" name="radio-group" type="radio">
+                    <label title="Select Address" for="{{'radio'+i}}" class="radio-custom-label"></label>
+                    &nbsp; Other
+                  </span>
+                  <textarea class="form-control margin-top-15" rows="4"></textarea>
+                </li>
+              </ul>
+          </div>
+          <div class="add-bank-detail">
+              <h5>Refaund Detail</h5>
+              <p>Add Bank Details</p>
+              <div class="login-content">
+                  <form>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="checkout-form-list">
+                          <label>Bank Holder Name</label>
+                          <input type="text" id="lastname" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="checkout-form-list">
+                          <label>Bank Name</label>
+                          <input type="text" id="lastname" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="checkout-form-list">
+                          <label>Branh Address</label>
+                          <input type="text" id="lastname" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="checkout-form-list">
+                          <label>Account Number</label>
+                          <input type="text" id="lastname" />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="checkout-form-list">
+                          <label>IFSC Code</label>
+                          <input type="text" id="lastname" />
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <button class="action-button btn btn-default btn-block" id="uprofilebtn" name="next" type="submit">Return</button>
+                      </div>
+                  </div>
+                  </form>
+              </div>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exchange-order">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" style="display: contents;">Exchange Order</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+         <div class="col-md-12">
+          <div class="exchange-order">
+            <h5>Write the reason for exchange</h5> 
+            <textarea class="form-control" rows="4"></textarea>
+          </div>
+          <div class="col-md-12">
+              <div class="margin-top-15">
+                <button class="action-button btn btn-default btn-block" id="uprofilebtn" name="next" type="submit">Save & Proceed</button>
+              </div>
+            </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- footer start -->
+<app-footer></app-footer>

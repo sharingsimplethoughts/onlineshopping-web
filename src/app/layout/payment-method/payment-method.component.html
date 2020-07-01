@@ -1,0 +1,107 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- cart-main-area start -->
+<div class="cart-main-area" id="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <form id="msform">
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <li class="active">Shopping Cart</li>
+            <li class="active">Address</li>
+            <li class="active">Payment Method</li>
+            <li>Payment</li>
+          </ul>
+          <!-- fieldsets -->
+          <fieldset>
+            <div class="col-sm-6 col-sm-offset-3">
+              <div class="">
+                <h2 class="fs-title">Payment Methods</h2>
+                <div class="row">
+                  <div class="login-content" style="text-align: left;">
+                    <div class="checkbox-form">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="payment-method">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                  <h4 class="panel-title">
+                                    <a role="button" (click)="netBanking()" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                      aria-expanded="true" aria-controls="collapseOne">
+                                      Internet Banking
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                  <div class="panel-body">
+                                    <p>Service Under Processing</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
+                                  <h4 class="panel-title">
+                                    <!-- <a routerLink='/saved-cards' >
+                                      Credit/Debit Card
+                                    </a> -->
+                                    <a class="collapsed" id="scrolldown" (click)="toggle()" role="button" data-toggle="collapse" data-parent="#accordion"
+                                      href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      Credit/Debit Card
+                                    </a>
+                                  </h4>
+                                </div>
+
+                              </div>
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                  <h4 class="panel-title">
+                                    <a class="collapsed" (click)="cashOnDel()" role="button" data-toggle="collapse" data-parent="#accordion"
+                                      href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                      Cash On Delivery
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                  aria-labelledby="headingThree">
+                                  <div class="panel-body">
+                                    <p>Please pay in cash Rs : {{updatedPrice || oldPrice}}, at the time of delivery.</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="show" class="order-button-payment">
+                              <button id="uprofilebtn" name="next" class="action-button btn btn-default btn-block"
+                                type="button" (click)="PlaceOrder_and_makePayment()">Proceed</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+  <div class="panel-body">
+    <!-- <p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p> -->
+    <app-paymentcard></app-paymentcard>
+    <div class="order-button-payment btnn">
+      <button id="uprofilebtn" name="next" class="action-button btn btn-default btn-block"
+        type="button" (click)="PlaceOrder_and_makePayment()">Proceed</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- cart-main-area end -->
+<!-- footer start -->
+<app-footer></app-footer>

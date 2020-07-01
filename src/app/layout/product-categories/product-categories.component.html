@@ -1,0 +1,56 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- page-title-area start -->
+<div class="page-title-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title-heading text-center">
+          <p>Style Stories</p>
+          <h1>min 40% off</h1>
+          <a routerLink="#" class="shop_now">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- page-title-area end -->
+<!-- featured-area start -->
+<div class="featured-area pad-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4" *ngFor="let subcategory of subcategories">
+        <div class="single-banner banner-item2">
+          <a class="banner-thumb" [routerLink] ="['/product-subcategories',subcategory.category,subcategory.id]">
+          <img src="{{subcategory.subcat_image}}" alt="" />
+          </a>
+          <div class="banner-caption">
+            <h2><a [routerLink] ="['/product-subcategories',subcategory.category,subcategory.id]">{{subcategory.subcat_name}}</a></h2>
+            <span class="shop-cat-subtitle">40 - 80% off >></span>
+            <a [routerLink] ="['/product-subcategories',subcategory.category,subcategory.id]" class="shop_now">Shop Now</a>
+          </div>
+        </div>
+      </div>
+      
+    
+      <!-- <div class="col-md-3 col-sm-3">
+        <a routerLink="/product-list">
+        <img src="assets/img/offer.png" alt="" />
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <a routerLink="/product-list">
+        <img src="assets/img/offer.png" alt="" />
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <a routerLink="/product-list">
+        <img src="assets/img/offer.png" alt="" />
+        </a>
+      </div> -->
+    </div>
+  </div>
+</div>
+<!-- featured-area end -->
+<!-- footer start -->
+<app-footer></app-footer>

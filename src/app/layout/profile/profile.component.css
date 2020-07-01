@@ -1,0 +1,55 @@
+.login-content form label{
+    display: block;
+}
+#sel-country{
+    border: 1px solid #e3e3e3;
+    box-shadow: none;
+    font-size: 13px;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    width: 40%;
+    float: left;
+    text-transform: capitalize;
+}
+#ent-mob{
+    width: 60%;
+    float: left;
+}
+
+.has-error{
+    border: 1px solid red !important;
+        
+}
+.error{
+    color: red;
+    font-weight: lighter;
+}
+#uprofile .list-inline li{
+    border-bottom: 1px solid #efefef !important;
+}
+.d-none{
+    display: none;
+}
+
+.btn1 {
+    -moz-user-select: none;
+    padding: 5px 10px;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 0;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transition: all 0.3s ease 0s;
+    vertical-align: middle;
+    white-space: nowrap;
+    border: 1px solid #292929;
+    background: transparent;
+    color: #292929;
+  }

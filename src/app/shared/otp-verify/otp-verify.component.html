@@ -1,0 +1,30 @@
+<app-header></app-header>
+<!-- header end -->
+<!-- login-area start -->
+<div class="login-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="login-content">
+          <p class="text-center">Enter OTP</p>
+          <form [formGroup]="OtpVerifyForm">
+            <input type="text"[(ngModel)]="otp"
+            id="field-name" formControlName="otp" onkeyup="numberChecking()" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4">
+            <label *ngIf="submitted && f.otp.errors" class="invalid-feedback">
+              <label class="error" *ngIf="f.otp.errors.required">Please enter 4 digit OTP </label>
+              <label class="error" *ngIf="f.otp.errors.minlength">Please enter 4 digit OTP </label>
+
+            </label>
+            <span style="color:red;">{{otperrormessage}}</span>
+            <input class="login-sub swal-otp" (click)=checkotp() value="Submit" type="submit">
+            <h6><a *ngIf="resend_active" (click)=resendotp()>Resend OTP</a></h6>
+            <h6 *ngIf="counteractive"><a> Resend OTP in <a style="color:red">{{counter}} Second</a></a></h6>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- login-area end -->
+<!-- footer start -->
+<app-footer></app-footer>

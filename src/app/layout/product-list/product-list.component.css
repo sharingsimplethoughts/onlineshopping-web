@@ -1,0 +1,54 @@
+.search_no_results{
+    font-size: 30px;
+    text-align: center;
+    margin-left:150px; 
+}
+
+.product-breadcrumb {
+  float: right;
+  text-align: right;
+  width: 100%;
+  padding-top: 25px;
+  border-top: 1px solid #e2e2e2;
+  margin-top: 20px;
+  font-size: 14px
+}
+
+
+.my-pagination /deep/ .ngx-pagination .current {
+  background: #1d285a;
+  border-radius: 2px;
+  padding: 0.675rem 0.825rem;
+  
+}
+
+.my-pagination /deep/ .ngx-pagination a {
+  padding: 0.675rem 0.825rem;
+  color :#444;
+  
+}
+
+.my-pagination /deep/ .ngx-pagination li{
+  margin-left:15px;
+  
+}
+
+
+
+.my-pagination /deep/ .ngx-pagination a:hover {
+  border-radius: 2px;
+  color :white;
+  background: #1d285a
+  
+}
+
+
+.my-pagination /deep/ pagination[_ngcontent-c1] .ngx-pagination a {
+  padding: 0.1875rem 1.725rem;
+}
+
+.liked { 
+  background: #fe4847 !important;
+  color: #fff !important;
+
+}
