@@ -27,7 +27,7 @@
     "firebase": "^7.6.0",
     "jquery": "^3.3.1",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "ng2-fileupload": "0.0.7",
     "ngrok": "^3.2.5",
     "ngx-google-places-autocomplete": "^2.0.4",
